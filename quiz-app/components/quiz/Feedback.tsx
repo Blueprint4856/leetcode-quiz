@@ -20,24 +20,44 @@ export function Feedback({
     ? PATTERNS.find(p => p.id === selectedPattern)?.label
     : null
 
+  const correctPatternEmoji = PATTERNS.find(p => p.id === correctPattern)?.emoji
+  const selectedPatternEmoji = selectedPattern
+    ? PATTERNS.find(p => p.id === selectedPattern)?.emoji
+    : null
+
   return (
     <div
       className={cn(
-        'rounded-xl p-4 text-center font-semibold',
-        'animate-in slide-in-from-bottom duration-300',
+        'rounded-2xl p-6 text-center font-semibold shadow-2xl border-4',
+        'animate-bounce-in backdrop-blur-sm',
         isCorrect
-          ? 'bg-green-100 text-green-800 border-2 border-green-300'
-          : 'bg-red-100 text-red-800 border-2 border-red-300'
+          ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white border-green-300'
+          : 'bg-gradient-to-br from-red-400 to-pink-500 text-white border-red-300'
       )}
     >
-      <div className="text-2xl mb-2">{isCorrect ? '✅' : '❌'}</div>
-      <div className="text-lg">
-        {isCorrect ? 'Correct!' : 'Not quite!'}
+      <div className="text-6xl mb-4 animate-bounce">{isCorrect ? '🎉' : '💭'}</div>
+      <div className="text-2xl font-extrabold mb-2">
+        {isCorrect ? 'Perfect!' : 'Keep Learning!'}
+      </div>
+      <div className="text-base opacity-90 mb-4">
+        {isCorrect ? 'You got it right!' : 'Not quite, but that\'s okay!'}
       </div>
       {!isCorrect && (
-        <div className="mt-2 text-sm">
-          <div>You selected: <span className="font-bold">{selectedPatternLabel}</span></div>
-          <div>Correct answer: <span className="font-bold">{correctPatternLabel}</span></div>
+        <div className="mt-4 space-y-3 bg-white/20 rounded-xl p-4 backdrop-blur-sm border border-white/30">
+          <div className="flex items-center justify-center gap-2 text-base">
+            <span className="text-2xl">{selectedPatternEmoji}</span>
+            <span>You chose: <span className="font-extrabold">{selectedPatternLabel}</span></span>
+          </div>
+          <div className="h-px bg-white/30" />
+          <div className="flex items-center justify-center gap-2 text-base">
+            <span className="text-2xl">{correctPatternEmoji}</span>
+            <span>Answer: <span className="font-extrabold">{correctPatternLabel}</span></span>
+          </div>
+        </div>
+      )}
+      {isCorrect && (
+        <div className="mt-3 text-sm opacity-90">
+          Next question coming up! 🚀
         </div>
       )}
     </div>
