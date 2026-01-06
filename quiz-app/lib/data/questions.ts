@@ -82,6 +82,406 @@ export const QUESTIONS: Question[] = [
     correctPattern: 'arrays_and_hashing',
     hints: ['Use a hash set to track seen numbers', 'Return true when you find a duplicate']
   },
+  {
+    id: '11',
+    title: 'Find All Duplicates in Array',
+    description: 'Given an integer array nums where each element appears once or twice, return an array of all elements that appear twice. You must write an algorithm that runs in O(n) time and uses only constant extra space.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use the array indices as a hash map', 'Mark visited elements by negating values']
+  },
+  {
+    id: '12',
+    title: 'Reverse String',
+    description: 'Write a function that reverses a string in place. The input string is given as an array of characters. You must do this by modifying the input array in-place with O(1) extra memory.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use two pointers at opposite ends', 'Swap and move toward center']
+  },
+  {
+    id: '13',
+    title: 'Maximum Subarray Sum',
+    description: 'Given an integer array nums, find the contiguous subarray with the largest sum and return its sum. The array contains at least one number.',
+    difficulty: 'easy',
+    correctPattern: 'sliding_window',
+    hints: ['Track current sum and maximum sum', 'Reset when current sum becomes negative']
+  },
+  {
+    id: '14',
+    title: 'Implement Queue using Stacks',
+    description: 'Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, pop, peek, empty).',
+    difficulty: 'easy',
+    correctPattern: 'stack',
+    hints: ['Use one stack for enqueue, another for dequeue', 'Transfer elements when needed']
+  },
+  {
+    id: '15',
+    title: 'Find First and Last Position',
+    description: 'Given an array of integers sorted in ascending order, find the starting and ending position of a given target value. If the target is not found, return [-1, -1]. Your algorithm must run in O(log n) time.',
+    difficulty: 'easy',
+    correctPattern: 'binary_search',
+    hints: ['Do two binary searches', 'One for leftmost, one for rightmost position']
+  },
+  {
+    id: '16',
+    title: 'Remove Linked List Elements',
+    description: 'Given the head of a linked list and an integer val, remove all nodes of the linked list that have Node.val == val, and return the new head.',
+    difficulty: 'easy',
+    correctPattern: 'linked_list',
+    hints: ['Use a dummy head node', 'Check next node value before linking']
+  },
+  {
+    id: '17',
+    title: 'Symmetric Tree',
+    description: 'Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Compare left subtree with right subtree', 'Use recursion or iterative with queue']
+  },
+  {
+    id: '18',
+    title: 'Same Tree',
+    description: 'Given the roots of two binary trees p and q, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and nodes have the same value.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Compare nodes recursively', 'Check both structure and values']
+  },
+  {
+    id: '19',
+    title: 'Valid Anagram',
+    description: 'Given two strings s and t, return true if t is an anagram of s, and false otherwise. An anagram is a word formed by rearranging letters of another word.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Count character frequencies', 'Use a hash map or array']
+  },
+  {
+    id: '20',
+    title: 'Missing Number',
+    description: 'Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use sum formula: n(n+1)/2', 'Or use XOR properties']
+  },
+  {
+    id: '21',
+    title: 'Move Zeroes',
+    description: 'Given an integer array nums, move all 0\'s to the end while maintaining the relative order of non-zero elements. You must do this in-place without making a copy of the array.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use one pointer for non-zero position', 'Another pointer to scan array']
+  },
+  {
+    id: '22',
+    title: 'Intersection of Two Arrays II',
+    description: 'Given two integer arrays nums1 and nums2, return an array of their intersection. Each element must appear as many times as it shows in both arrays.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Count frequencies in first array', 'Match with second array']
+  },
+  {
+    id: '23',
+    title: 'Reverse Linked List',
+    description: 'Given the head of a singly linked list, reverse the list and return the reversed list.',
+    difficulty: 'easy',
+    correctPattern: 'linked_list',
+    hints: ['Use three pointers: prev, current, next', 'Or use recursion']
+  },
+  {
+    id: '24',
+    title: 'Palindrome Linked List',
+    description: 'Given the head of a singly linked list, return true if it is a palindrome. A palindrome reads the same forward and backward.',
+    difficulty: 'easy',
+    correctPattern: 'linked_list',
+    hints: ['Find middle using slow/fast pointers', 'Reverse second half and compare']
+  },
+  {
+    id: '25',
+    title: 'Climbing Stairs',
+    description: 'You are climbing a staircase that takes n steps to reach the top. Each time you can climb 1 or 2 steps. In how many distinct ways can you climb to the top?',
+    difficulty: 'easy',
+    correctPattern: 'dynamic_programming',
+    hints: ['This is the Fibonacci sequence', 'Ways[n] = Ways[n-1] + Ways[n-2]']
+  },
+  {
+    id: '26',
+    title: 'Majority Element',
+    description: 'Given an array nums of size n, return the majority element. The majority element appears more than ⌊n / 2⌋ times. You may assume the majority element always exists.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use Boyer-Moore voting algorithm', 'Or count frequencies with hash map']
+  },
+  {
+    id: '27',
+    title: 'Happy Number',
+    description: 'Write an algorithm to determine if a number n is happy. A happy number is defined by replacing the number with the sum of squares of its digits repeatedly until it equals 1, or it loops endlessly in a cycle.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use fast and slow pointers to detect cycle', 'Similar to linked list cycle detection']
+  },
+  {
+    id: '28',
+    title: 'Diameter of Binary Tree',
+    description: 'Given the root of a binary tree, return the length of the diameter. The diameter is the length of the longest path between any two nodes, which may or may not pass through root.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Calculate height of left and right subtrees', 'Update diameter at each node']
+  },
+  {
+    id: '29',
+    title: 'Min Cost Climbing Stairs',
+    description: 'You are given an integer array cost where cost[i] is the cost of ith step. Once you pay the cost, you can climb one or two steps. Return the minimum cost to reach the top.',
+    difficulty: 'easy',
+    correctPattern: 'dynamic_programming',
+    hints: ['Start from either step 0 or 1', 'Min cost at step i = cost[i] + min(cost[i-1], cost[i-2])']
+  },
+  {
+    id: '30',
+    title: 'Backspace String Compare',
+    description: 'Given two strings s and t, return true if they are equal when both are typed into empty text editors. "#" means a backspace character. You cannot delete from empty text.',
+    difficulty: 'easy',
+    correctPattern: 'stack',
+    hints: ['Use stack to process backspaces', 'Or use two pointers from the end']
+  },
+  {
+    id: '31',
+    title: 'Single Number',
+    description: 'Given a non-empty array of integers nums where every element appears twice except for one. Find that single element. Implement a solution with linear runtime and constant space.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use XOR operation', 'XOR of two same numbers is 0']
+  },
+  {
+    id: '32',
+    title: 'Squares of Sorted Array',
+    description: 'Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use two pointers at both ends', 'Largest square comes from either end']
+  },
+  {
+    id: '33',
+    title: 'Range Sum Query Immutable',
+    description: 'Given an integer array nums, handle multiple queries to calculate the sum of elements between indices left and right inclusive. Design a data structure that efficiently handles these queries.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use prefix sum array', 'Sum(i, j) = prefix[j+1] - prefix[i]']
+  },
+  {
+    id: '34',
+    title: 'Middle of Linked List',
+    description: 'Given the head of a singly linked list, return the middle node. If there are two middle nodes, return the second middle node.',
+    difficulty: 'easy',
+    correctPattern: 'linked_list',
+    hints: ['Use slow and fast pointers', 'Fast moves twice as fast as slow']
+  },
+  {
+    id: '35',
+    title: 'Path Sum',
+    description: 'Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all values equals targetSum.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Use DFS to explore all paths', 'Subtract current value from target']
+  },
+  {
+    id: '36',
+    title: 'Sqrt(x)',
+    description: 'Given a non-negative integer x, compute and return the square root of x. Since the return type is an integer, the decimal digits are truncated.',
+    difficulty: 'easy',
+    correctPattern: 'binary_search',
+    hints: ['Search space is from 0 to x', 'Check if mid * mid equals x']
+  },
+  {
+    id: '37',
+    title: 'Daily Temperatures',
+    description: 'Given an array of integers temperatures representing daily temperatures, return an array such that answer[i] is the number of days until a warmer temperature. If there is no future day, use 0.',
+    difficulty: 'easy',
+    correctPattern: 'stack',
+    hints: ['Use monotonic decreasing stack', 'Store indices in the stack']
+  },
+  {
+    id: '38',
+    title: 'Balanced Binary Tree',
+    description: 'Given a binary tree, determine if it is height-balanced. A height-balanced tree is one where the depth of two subtrees of every node never differs by more than one.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Check height difference at each node', 'Return -1 to signal imbalance']
+  },
+  {
+    id: '39',
+    title: 'Isomorphic Strings',
+    description: 'Given two strings s and t, determine if they are isomorphic. Two strings are isomorphic if characters in s can be replaced to get t, maintaining the order.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Map each character in s to character in t', 'Check for one-to-one mapping']
+  },
+  {
+    id: '40',
+    title: 'Remove Duplicates from Sorted Array',
+    description: 'Given an integer array sorted in non-decreasing order, remove duplicates in-place such that each unique element appears only once. Return the number of unique elements.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use one pointer for unique position', 'Another pointer scans the array']
+  },
+  {
+    id: '41',
+    title: 'Last Stone Weight',
+    description: 'You are given an array of integers stones where stones[i] is the weight of the ith stone. On each turn, choose two heaviest stones and smash them. Return the weight of the last remaining stone or 0.',
+    difficulty: 'easy',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Use max heap to get heaviest stones', 'Push difference back to heap']
+  },
+  {
+    id: '42',
+    title: 'Baseball Game',
+    description: 'You are keeping score for a baseball game. Given a list of strings operations representing the operations, return the sum of all scores. Operations include: integer, "+", "D", "C".',
+    difficulty: 'easy',
+    correctPattern: 'stack',
+    hints: ['Use stack to track valid scores', 'Process each operation accordingly']
+  },
+  {
+    id: '43',
+    title: 'Merge Sorted Array',
+    description: 'You are given two integer arrays nums1 and nums2 sorted in non-decreasing order. Merge nums2 into nums1 as one sorted array in-place.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Start from the end of both arrays', 'Fill nums1 from right to left']
+  },
+  {
+    id: '44',
+    title: 'Find the Difference',
+    description: 'You are given two strings s and t. String t is generated by shuffling string s and adding one more letter at a random position. Return the letter that was added to t.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use XOR or sum of ASCII values', 'Count character frequencies']
+  },
+  {
+    id: '45',
+    title: 'Subtree of Another Tree',
+    description: 'Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Check if trees are same at each node', 'Use recursive helper function']
+  },
+  {
+    id: '46',
+    title: 'Kth Largest Element in Stream',
+    description: 'Design a class to find the kth largest element in a stream. Implement KthLargest class with constructor and add method.',
+    difficulty: 'easy',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Maintain min heap of size k', 'Root of heap is kth largest']
+  },
+  {
+    id: '47',
+    title: 'Minimum Absolute Difference in BST',
+    description: 'Given the root of a Binary Search Tree, return the minimum absolute difference between values of any two different nodes in the tree.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['In-order traversal gives sorted values', 'Compare consecutive values']
+  },
+  {
+    id: '48',
+    title: 'Guess Number Higher or Lower',
+    description: 'We are playing the Guess Game. I pick a number from 1 to n, and you have to guess which number I picked. A pre-defined API tells you if your guess is higher or lower.',
+    difficulty: 'easy',
+    correctPattern: 'binary_search',
+    hints: ['Use binary search on range [1, n]', 'Adjust search space based on feedback']
+  },
+  {
+    id: '49',
+    title: 'Add Binary',
+    description: 'Given two binary strings a and b, return their sum as a binary string.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Process from right to left', 'Track carry bit']
+  },
+  {
+    id: '50',
+    title: 'Number of 1 Bits',
+    description: 'Write a function that takes an unsigned integer and returns the number of 1 bits it has (also known as Hamming weight).',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use bit manipulation', 'n & (n-1) removes rightmost 1 bit']
+  },
+  {
+    id: '51',
+    title: 'Leaf-Similar Trees',
+    description: 'Consider all leaves of a binary tree from left to right. Two binary trees are leaf-similar if their leaf value sequences are the same. Return true if they are leaf-similar.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Collect leaves using DFS', 'Compare leaf sequences']
+  },
+  {
+    id: '52',
+    title: 'Sort Colors',
+    description: 'Given an array nums with n objects colored red, white, or blue (represented by 0, 1, 2), sort them in-place. Do this without using sort function.',
+    difficulty: 'easy',
+    correctPattern: 'two_pointers',
+    hints: ['Use Dutch National Flag algorithm', 'Maintain three pointers for 0s, 1s, 2s']
+  },
+  {
+    id: '53',
+    title: 'Valid Perfect Square',
+    description: 'Given a positive integer num, return true if num is a perfect square or false otherwise. Do not use built-in sqrt function.',
+    difficulty: 'easy',
+    correctPattern: 'binary_search',
+    hints: ['Search from 1 to num', 'Check if mid * mid equals num']
+  },
+  {
+    id: '54',
+    title: 'Fibonacci Number',
+    description: 'The Fibonacci numbers form a sequence where each number is the sum of the two preceding ones. Given n, calculate F(n).',
+    difficulty: 'easy',
+    correctPattern: 'dynamic_programming',
+    hints: ['Use iterative approach with two variables', 'Or memoization for recursion']
+  },
+  {
+    id: '55',
+    title: 'Relative Ranks',
+    description: 'Given an integer array score of athletes\' scores, return their relative ranks and the top three placements as "Gold Medal", "Silver Medal", "Bronze Medal".',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Sort scores while tracking original indices', 'Use hash map for rankings']
+  },
+  {
+    id: '56',
+    title: 'Remove All Adjacent Duplicates',
+    description: 'You are given a string s. Repeatedly remove two adjacent and equal letters until you cannot perform this operation anymore. Return the final string.',
+    difficulty: 'easy',
+    correctPattern: 'stack',
+    hints: ['Use stack to track characters', 'Pop when top matches current']
+  },
+  {
+    id: '57',
+    title: 'Count Complete Tree Nodes',
+    description: 'Given the root of a complete binary tree, return the number of nodes. A complete binary tree has all levels fully filled except possibly the last.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Use binary search on last level', 'Or simple recursion']
+  },
+  {
+    id: '58',
+    title: 'Sum of Left Leaves',
+    description: 'Given the root of a binary tree, return the sum of all left leaves. A left leaf is a leaf that is the left child of another node.',
+    difficulty: 'easy',
+    correctPattern: 'trees',
+    hints: ['Use DFS with flag for left child', 'Check if node is leaf and is left child']
+  },
+  {
+    id: '59',
+    title: 'First Unique Character',
+    description: 'Given a string s, find the first non-repeating character and return its index. If it does not exist, return -1.',
+    difficulty: 'easy',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Count character frequencies first', 'Scan again to find first with count 1']
+  },
+  {
+    id: '60',
+    title: 'Intersection of Two Linked Lists',
+    description: 'Given heads of two singly linked lists, return the node at which they intersect. If they do not intersect, return null.',
+    difficulty: 'easy',
+    correctPattern: 'linked_list',
+    hints: ['Calculate lengths of both lists', 'Align starting points and traverse together']
+  },
 
   // Medium questions
   {
@@ -164,6 +564,406 @@ export const QUESTIONS: Question[] = [
     correctPattern: 'greedy',
     hints: ['Track the farthest position you can reach', 'Update it as you iterate through the array']
   },
+  {
+    id: '1011',
+    title: 'Product of Array Except Self',
+    description: 'Given an integer array nums, return an array answer such that answer[i] is equal to the product of all elements of nums except nums[i]. You must write an algorithm that runs in O(n) time and without using division.',
+    difficulty: 'medium',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use prefix and suffix products', 'Calculate left products, then multiply by right products']
+  },
+  {
+    id: '1012',
+    title: 'Encode and Decode Strings',
+    description: 'Design an algorithm to encode a list of strings to a single string and decode it back to the original list of strings. The encoded string should be able to handle any possible string including those with special characters.',
+    difficulty: 'medium',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use a delimiter with length prefix', 'Format: length#string']
+  },
+  {
+    id: '1013',
+    title: 'Longest Consecutive Sequence',
+    description: 'Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(n) time.',
+    difficulty: 'medium',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use a hash set for O(1) lookups', 'Only start counting from sequence beginnings']
+  },
+  {
+    id: '1014',
+    title: 'Container With Most Water',
+    description: 'Given n non-negative integers representing vertical lines on a chart, find two lines that together with the x-axis form a container that holds the most water.',
+    difficulty: 'medium',
+    correctPattern: 'two_pointers',
+    hints: ['Use two pointers at both ends', 'Move the pointer with smaller height inward']
+  },
+  {
+    id: '1015',
+    title: 'Trapping Rain Water II',
+    description: 'Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation map, return the volume of water it can trap after raining.',
+    difficulty: 'medium',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Start from borders using priority queue', 'Water level determined by minimum boundary']
+  },
+  {
+    id: '1016',
+    title: 'Minimum Size Subarray Sum',
+    description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0.',
+    difficulty: 'medium',
+    correctPattern: 'sliding_window',
+    hints: ['Expand window until sum >= target', 'Then shrink from left while maintaining sum']
+  },
+  {
+    id: '1017',
+    title: 'Longest Repeating Character Replacement',
+    description: 'Given a string s and an integer k, you can choose any character and change it to any other uppercase English character. Return the length of the longest substring containing the same letter you can get after performing at most k changes.',
+    difficulty: 'medium',
+    correctPattern: 'sliding_window',
+    hints: ['Track frequency of most common character in window', 'Window valid if (window_size - max_freq) <= k']
+  },
+  {
+    id: '1018',
+    title: 'Permutation in String',
+    description: 'Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1\'s permutations is a substring of s2.',
+    difficulty: 'medium',
+    correctPattern: 'sliding_window',
+    hints: ['Use fixed-size sliding window of length s1', 'Compare character frequencies']
+  },
+  {
+    id: '1019',
+    title: 'Daily Temperatures',
+    description: 'Given an array of integers temperatures representing daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature.',
+    difficulty: 'medium',
+    correctPattern: 'stack',
+    hints: ['Use monotonic decreasing stack', 'Store indices in the stack']
+  },
+  {
+    id: '1020',
+    title: 'Generate Parentheses',
+    description: 'Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Track count of open and close parentheses', 'Only add close if close_count < open_count']
+  },
+  {
+    id: '1021',
+    title: 'Car Fleet',
+    description: 'There are n cars going to the same destination on a one-lane road. Given arrays position and speed, return the number of car fleets that will arrive at the destination.',
+    difficulty: 'medium',
+    correctPattern: 'stack',
+    hints: ['Calculate time to reach target for each car', 'Process cars from closest to target']
+  },
+  {
+    id: '1022',
+    title: 'Largest Rectangle in Histogram',
+    description: 'Given an array of integers heights representing the histogram\'s bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.',
+    difficulty: 'medium',
+    correctPattern: 'stack',
+    hints: ['Use monotonic increasing stack', 'Calculate area when encountering smaller height']
+  },
+  {
+    id: '1023',
+    title: 'Time Based Key-Value Store',
+    description: 'Design a time-based key-value data structure that can store multiple values for the same key at different timestamps and retrieve the value at a certain timestamp.',
+    difficulty: 'medium',
+    correctPattern: 'binary_search',
+    hints: ['Store values with timestamps in sorted order', 'Use binary search to find largest timestamp <= given']
+  },
+  {
+    id: '1024',
+    title: 'Find Minimum in Rotated Sorted Array',
+    description: 'Given a sorted rotated array of unique elements, return the minimum element of this array. You must write an algorithm that runs in O(log n) time.',
+    difficulty: 'medium',
+    correctPattern: 'binary_search',
+    hints: ['Compare mid with right element', 'Minimum is in the unsorted half']
+  },
+  {
+    id: '1025',
+    title: 'Search in Rotated Sorted Array II',
+    description: 'Given a rotated sorted array that may contain duplicates and a target value, return true if target exists in the array. You should decrease the constant space usage.',
+    difficulty: 'medium',
+    correctPattern: 'binary_search',
+    hints: ['Handle duplicates by incrementing left pointer', 'Identify which half is sorted']
+  },
+  {
+    id: '1026',
+    title: 'Reverse Linked List II',
+    description: 'Given the head of a singly linked list and two integers left and right, reverse the nodes from position left to position right, and return the reversed list.',
+    difficulty: 'medium',
+    correctPattern: 'linked_list',
+    hints: ['Use dummy node for easier handling', 'Reverse sublist in-place']
+  },
+  {
+    id: '1027',
+    title: 'Remove Nth Node From End of List',
+    description: 'Given the head of a linked list, remove the nth node from the end of the list and return its head.',
+    difficulty: 'medium',
+    correctPattern: 'linked_list',
+    hints: ['Use two pointers with n gap between them', 'Move both until fast reaches end']
+  },
+  {
+    id: '1028',
+    title: 'Copy List with Random Pointer',
+    description: 'A linked list is given where each node contains an additional random pointer which could point to any node or null. Return a deep copy of the list.',
+    difficulty: 'medium',
+    correctPattern: 'linked_list',
+    hints: ['Use hashmap to map old nodes to new nodes', 'Two passes: create nodes, then set pointers']
+  },
+  {
+    id: '1029',
+    title: 'Add Two Numbers',
+    description: 'You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order. Add the two numbers and return the sum as a linked list.',
+    difficulty: 'medium',
+    correctPattern: 'linked_list',
+    hints: ['Track carry while iterating both lists', 'Handle different lengths and final carry']
+  },
+  {
+    id: '1030',
+    title: 'LRU Cache',
+    description: 'Design a data structure that follows the constraints of a Least Recently Used (LRU) cache with get and put operations in O(1) time.',
+    difficulty: 'medium',
+    correctPattern: 'linked_list',
+    hints: ['Use hashmap + doubly linked list', 'HashMap for O(1) lookup, list for LRU order']
+  },
+  {
+    id: '1031',
+    title: 'Binary Tree Level Order Traversal',
+    description: 'Given the root of a binary tree, return the level order traversal of its nodes\' values (i.e., from left to right, level by level).',
+    difficulty: 'medium',
+    correctPattern: 'trees',
+    hints: ['Use queue for BFS', 'Track level size to separate levels']
+  },
+  {
+    id: '1032',
+    title: 'Binary Tree Right Side View',
+    description: 'Given the root of a binary tree, imagine yourself standing on the right side of it. Return the values of the nodes you can see ordered from top to bottom.',
+    difficulty: 'medium',
+    correctPattern: 'trees',
+    hints: ['Level order traversal, take last node of each level', 'Or DFS with depth tracking']
+  },
+  {
+    id: '1033',
+    title: 'Count Good Nodes in Binary Tree',
+    description: 'Given a binary tree root, a node X is named good if in the path from root to X there are no nodes with a value greater than X. Return the number of good nodes.',
+    difficulty: 'medium',
+    correctPattern: 'trees',
+    hints: ['DFS tracking maximum value in path', 'Compare current node with max']
+  },
+  {
+    id: '1034',
+    title: 'Kth Smallest Element in a BST',
+    description: 'Given the root of a binary search tree and an integer k, return the kth smallest value (1-indexed) of all values in the tree.',
+    difficulty: 'medium',
+    correctPattern: 'trees',
+    hints: ['In-order traversal gives sorted order', 'Count nodes during traversal']
+  },
+  {
+    id: '1035',
+    title: 'Construct Binary Tree from Preorder and Inorder',
+    description: 'Given two integer arrays preorder and inorder, construct and return the binary tree.',
+    difficulty: 'medium',
+    correctPattern: 'trees',
+    hints: ['First element of preorder is root', 'Find root in inorder to split left/right subtrees']
+  },
+  {
+    id: '1036',
+    title: 'Number of Islands',
+    description: 'Given an m x n 2D binary grid which represents a map of land (1) and water (0), return the number of islands. An island is surrounded by water and formed by connecting adjacent lands horizontally or vertically.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Use DFS or BFS to explore each island', 'Mark visited cells to avoid recounting']
+  },
+  {
+    id: '1037',
+    title: 'Clone Graph',
+    description: 'Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Use hashmap to track old to new node mapping', 'DFS or BFS to traverse graph']
+  },
+  {
+    id: '1038',
+    title: 'Pacific Atlantic Water Flow',
+    description: 'Given an m x n matrix of non-negative integers representing heights, find all cells from which water can flow to both the Pacific and Atlantic oceans.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Start DFS from ocean borders', 'Find intersection of reachable cells']
+  },
+  {
+    id: '1039',
+    title: 'Surrounded Regions',
+    description: 'Given an m x n matrix board containing X and O, capture all regions that are surrounded by X. A region is captured by flipping all Os into Xs.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Start from border Os using DFS', 'Mark safe Os, then flip remaining Os']
+  },
+  {
+    id: '1040',
+    title: 'Rotting Oranges',
+    description: 'Given a grid where 0 is empty, 1 is fresh orange, 2 is rotten orange. Every minute, fresh oranges adjacent to rotten ones become rotten. Return minimum minutes until no fresh oranges remain.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Multi-source BFS from all rotten oranges', 'Track time with level-by-level BFS']
+  },
+  {
+    id: '1041',
+    title: 'Course Schedule II',
+    description: 'Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses. If impossible, return empty array.',
+    difficulty: 'medium',
+    correctPattern: 'graphs',
+    hints: ['Topological sort using DFS or Kahns algorithm', 'Detect cycles to determine if possible']
+  },
+  {
+    id: '1042',
+    title: 'Word Search',
+    description: 'Given an m x n grid of characters board and a string word, return true if word exists in the grid. The word can be constructed from sequentially adjacent cells.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['DFS from each cell trying to match word', 'Backtrack by unmarking visited cells']
+  },
+  {
+    id: '1043',
+    title: 'Palindrome Partitioning',
+    description: 'Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Try partitioning at each position', 'Check if substring is palindrome before recursing']
+  },
+  {
+    id: '1044',
+    title: 'Letter Combinations of a Phone Number',
+    description: 'Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent (like on a phone keypad).',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Map digits to letters', 'Recursively build combinations']
+  },
+  {
+    id: '1045',
+    title: 'Subsets',
+    description: 'Given an integer array nums of unique elements, return all possible subsets (the power set). The solution set must not contain duplicate subsets.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['For each element, choose to include or exclude', 'Build subsets recursively']
+  },
+  {
+    id: '1046',
+    title: 'Subsets II',
+    description: 'Given an integer array nums that may contain duplicates, return all possible subsets. The solution set must not contain duplicate subsets.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Sort array first', 'Skip duplicates at same recursion level']
+  },
+  {
+    id: '1047',
+    title: 'Permutations',
+    description: 'Given an array nums of distinct integers, return all the possible permutations in any order.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Swap elements to generate permutations', 'Track used elements with a set']
+  },
+  {
+    id: '1048',
+    title: 'Combination Sum II',
+    description: 'Given a collection of candidate numbers and a target, find all unique combinations where the candidates sum to target. Each number may only be used once.',
+    difficulty: 'medium',
+    correctPattern: 'backtracking',
+    hints: ['Sort array to handle duplicates', 'Skip duplicate values at same level']
+  },
+  {
+    id: '1049',
+    title: 'Target Sum',
+    description: 'You are given an integer array nums and an integer target. Build an expression by adding + or - before each integer. Return the number of ways to build the expression such that it evaluates to target.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['Convert to subset sum problem', 'DP[i][sum] = ways to achieve sum using first i elements']
+  },
+  {
+    id: '1050',
+    title: 'Coin Change',
+    description: 'You are given an integer array coins representing different coin denominations and an integer amount. Return the fewest number of coins needed to make up that amount.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i] = minimum coins for amount i', 'For each amount, try all coins']
+  },
+  {
+    id: '1051',
+    title: 'Longest Increasing Subsequence',
+    description: 'Given an integer array nums, return the length of the longest strictly increasing subsequence.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i] = length of LIS ending at i', 'For each i, check all j < i where nums[j] < nums[i]']
+  },
+  {
+    id: '1052',
+    title: 'Partition Equal Subset Sum',
+    description: 'Given a non-empty array nums containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['Target sum = total_sum / 2', 'Subset sum DP problem']
+  },
+  {
+    id: '1053',
+    title: 'Unique Paths',
+    description: 'A robot is located at the top-left corner of an m x n grid. The robot can only move down or right. How many possible unique paths are there to reach the bottom-right corner?',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = paths to reach (i,j)', 'DP[i][j] = DP[i-1][j] + DP[i][j-1]']
+  },
+  {
+    id: '1054',
+    title: 'Longest Palindromic Substring',
+    description: 'Given a string s, return the longest palindromic substring in s.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['Expand around center for each position', 'Or use DP: DP[i][j] = is s[i:j] palindrome']
+  },
+  {
+    id: '1055',
+    title: 'Decode Ways',
+    description: 'A message containing letters A-Z can be encoded to numbers 1-26. Given a string s containing only digits, return the number of ways to decode it.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i] = ways to decode s[0:i]', 'Consider single digit and two-digit decodings']
+  },
+  {
+    id: '1056',
+    title: 'Maximum Product Subarray',
+    description: 'Given an integer array nums, find a contiguous non-empty subarray with the largest product, and return the product.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['Track both max and min products', 'Negative * negative can become positive']
+  },
+  {
+    id: '1057',
+    title: 'Word Break',
+    description: 'Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of dictionary words.',
+    difficulty: 'medium',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i] = can segment s[0:i]', 'For each position, try all words from dictionary']
+  },
+  {
+    id: '1058',
+    title: 'Last Stone Weight',
+    description: 'You are given an array of integers stones where stones[i] is the weight of the ith stone. On each turn, choose the two heaviest stones and smash them together. Return the weight of the last remaining stone.',
+    difficulty: 'medium',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Use max heap to get heaviest stones', 'Simulate the smashing process']
+  },
+  {
+    id: '1059',
+    title: 'Task Scheduler',
+    description: 'Given a characters array tasks where tasks[i] is the type of the ith task and an integer n representing the cooldown period, return the minimum time needed to complete all tasks.',
+    difficulty: 'medium',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Use max heap for task frequencies', 'Schedule most frequent tasks with cooldown gaps']
+  },
+  {
+    id: '1060',
+    title: 'Jump Game II',
+    description: 'Given an array of non-negative integers nums where you are initially at the first index. Each element represents your maximum jump length. Return the minimum number of jumps to reach the last index.',
+    difficulty: 'medium',
+    correctPattern: 'greedy',
+    hints: ['Track current reach and next reach', 'Increment jumps when reaching end of current reach']
+  },
 
   // Hard questions
   {
@@ -245,6 +1045,406 @@ export const QUESTIONS: Question[] = [
     difficulty: 'hard',
     correctPattern: 'greedy',
     hints: ['If total gas < total cost, impossible', 'Start from a station where you can proceed forward']
+  },
+  {
+    id: '2011',
+    title: 'Longest Substring with At Most K Distinct Characters',
+    description: 'Given a string s and an integer k, return the length of the longest substring that contains at most k distinct characters.',
+    difficulty: 'hard',
+    correctPattern: 'sliding_window',
+    hints: ['Use sliding window with hashmap', 'Shrink window when distinct chars > k']
+  },
+  {
+    id: '2012',
+    title: 'Substring with Concatenation of All Words',
+    description: 'Given a string s and an array of strings words (all of the same length), find all starting indices of substring(s) in s that is a concatenation of each word exactly once, in any order.',
+    difficulty: 'hard',
+    correctPattern: 'sliding_window',
+    hints: ['Fixed window size = words.length * word_length', 'Use hashmap to track word frequencies']
+  },
+  {
+    id: '2013',
+    title: 'Sliding Window Maximum',
+    description: 'Given an array nums and a sliding window of size k, return the maximum value in each window as it slides from left to right.',
+    difficulty: 'hard',
+    correctPattern: 'sliding_window',
+    hints: ['Use deque to maintain decreasing order', 'Remove elements outside window and smaller elements']
+  },
+  {
+    id: '2014',
+    title: 'Basic Calculator',
+    description: 'Given a string s representing a valid expression with +, -, (, and ), implement a basic calculator to evaluate it.',
+    difficulty: 'hard',
+    correctPattern: 'stack',
+    hints: ['Use stack for parentheses', 'Track current number and sign']
+  },
+  {
+    id: '2015',
+    title: 'Largest Rectangle in Matrix',
+    description: 'Given a binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s and return its area.',
+    difficulty: 'hard',
+    correctPattern: 'stack',
+    hints: ['Convert to histogram problem for each row', 'Use monotonic stack for histogram']
+  },
+  {
+    id: '2016',
+    title: 'Remove Invalid Parentheses',
+    description: 'Given a string s with parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid. Return all possible results.',
+    difficulty: 'hard',
+    correctPattern: 'backtracking',
+    hints: ['Calculate minimum removals needed', 'DFS trying to remove each invalid parenthesis']
+  },
+  {
+    id: '2017',
+    title: 'Expression Add Operators',
+    description: 'Given a string num and an integer target, return all possibilities to add binary operators +, -, or * between the digits of num so the expression evaluates to target.',
+    difficulty: 'hard',
+    correctPattern: 'backtracking',
+    hints: ['Track current value and previous operand for multiplication', 'Try all three operators at each position']
+  },
+  {
+    id: '2018',
+    title: 'Sudoku Solver',
+    description: 'Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the rules.',
+    difficulty: 'hard',
+    correctPattern: 'backtracking',
+    hints: ['Try digits 1-9 for each empty cell', 'Backtrack if placement violates rules']
+  },
+  {
+    id: '2019',
+    title: 'Word Search II',
+    description: 'Given an m x n board of characters and a list of strings words, return all words on the board. Each word must be constructed from sequentially adjacent cells.',
+    difficulty: 'hard',
+    correctPattern: 'backtracking',
+    hints: ['Use Trie to store all words', 'DFS with Trie traversal for efficiency']
+  },
+  {
+    id: '2020',
+    title: 'Palindrome Pairs',
+    description: 'Given a list of unique words, return all pairs of distinct indices (i, j) such that the concatenation of the two words words[i] + words[j] is a palindrome.',
+    difficulty: 'hard',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Use hashmap to store reversed words', 'Check if prefix/suffix forms palindrome']
+  },
+  {
+    id: '2021',
+    title: 'Max Points on a Line',
+    description: 'Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane, return the maximum number of points that lie on the same straight line.',
+    difficulty: 'hard',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['For each point, calculate slopes to all other points', 'Use hashmap to count same slopes']
+  },
+  {
+    id: '2022',
+    title: 'First Missing Positive',
+    description: 'Given an unsorted integer array nums, return the smallest missing positive integer. You must implement an algorithm that runs in O(n) time and uses O(1) auxiliary space.',
+    difficulty: 'hard',
+    correctPattern: 'arrays_and_hashing',
+    hints: ['Place each number in its correct index', 'Scan to find first missing positive']
+  },
+  {
+    id: '2023',
+    title: '4Sum',
+    description: 'Given an array nums of n integers, return all unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that their sum equals target.',
+    difficulty: 'hard',
+    correctPattern: 'two_pointers',
+    hints: ['Sort array, fix two elements, use two pointers for remaining', 'Skip duplicates at all levels']
+  },
+  {
+    id: '2024',
+    title: 'Shortest Palindrome',
+    description: 'Given a string s, find the shortest palindrome you can create by adding characters in front of it.',
+    difficulty: 'hard',
+    correctPattern: 'two_pointers',
+    hints: ['Find longest palindrome prefix', 'Use KMP or two pointers']
+  },
+  {
+    id: '2025',
+    title: 'Kth Smallest in Sorted Matrix',
+    description: 'Given an n x n matrix where each row and column is sorted in ascending order, find the kth smallest element in the matrix.',
+    difficulty: 'hard',
+    correctPattern: 'binary_search',
+    hints: ['Binary search on value range', 'Count elements <= mid value']
+  },
+  {
+    id: '2026',
+    title: 'Split Array Largest Sum',
+    description: 'Given an array nums and integer k, split the array into k non-empty subarrays. Minimize the largest sum among these subarrays.',
+    difficulty: 'hard',
+    correctPattern: 'binary_search',
+    hints: ['Binary search on the answer', 'Check if mid sum allows k subarrays']
+  },
+  {
+    id: '2027',
+    title: 'Allocate Minimum Pages',
+    description: 'Given an array where arr[i] is pages in ith book and m students, allocate books to students such that maximum pages allocated to a student is minimized. Each student gets at least one book.',
+    difficulty: 'hard',
+    correctPattern: 'binary_search',
+    hints: ['Binary search on maximum pages', 'Greedily allocate books checking if allocation possible']
+  },
+  {
+    id: '2028',
+    title: 'Merge k Sorted Lists',
+    description: 'You are given an array of k linked-lists lists, each sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it.',
+    difficulty: 'hard',
+    correctPattern: 'linked_list',
+    hints: ['Use min heap to track smallest elements', 'Always extract min and add next from that list']
+  },
+  {
+    id: '2029',
+    title: 'Reverse Nodes in k-Group',
+    description: 'Given the head of a linked list, reverse the nodes in groups of k and return the modified list. If nodes are not multiple of k, leave remaining nodes as is.',
+    difficulty: 'hard',
+    correctPattern: 'linked_list',
+    hints: ['Check if k nodes available', 'Reverse k nodes, recursively process rest']
+  },
+  {
+    id: '2030',
+    title: 'LFU Cache',
+    description: 'Design and implement a data structure for a Least Frequently Used (LFU) cache with O(1) time complexity for both get and put operations.',
+    difficulty: 'hard',
+    correctPattern: 'linked_list',
+    hints: ['Use hashmap for key->node, hashmap for freq->list', 'Track minimum frequency']
+  },
+  {
+    id: '2031',
+    title: 'Serialize and Deserialize Binary Tree',
+    description: 'Design an algorithm to serialize a binary tree to a string and deserialize the string back to the original tree structure.',
+    difficulty: 'hard',
+    correctPattern: 'trees',
+    hints: ['Use preorder traversal with null markers', 'Reconstruct using queue or recursion']
+  },
+  {
+    id: '2032',
+    title: 'Binary Tree Maximum Path Sum',
+    description: 'Given the root of a binary tree, return the maximum path sum of any non-empty path. A path can start and end at any node.',
+    difficulty: 'hard',
+    correctPattern: 'trees',
+    hints: ['For each node, calculate max path through it', 'Return single path to parent, track global max']
+  },
+  {
+    id: '2033',
+    title: 'Binary Tree Cameras',
+    description: 'Given a binary tree, install cameras on tree nodes where each camera can monitor its parent, itself, and immediate children. Return minimum cameras needed to monitor all nodes.',
+    difficulty: 'hard',
+    correctPattern: 'trees',
+    hints: ['Post-order DFS with three states', 'States: needs camera, has camera, covered']
+  },
+  {
+    id: '2034',
+    title: 'Vertical Order Traversal',
+    description: 'Given the root of a binary tree, calculate the vertical order traversal where nodes at the same position are sorted by their values.',
+    difficulty: 'hard',
+    correctPattern: 'trees',
+    hints: ['DFS/BFS tracking column and row', 'Sort by column, row, then value']
+  },
+  {
+    id: '2035',
+    title: 'Alien Dictionary',
+    description: 'Given a sorted dictionary of an alien language, derive the order of characters in this language. Return the order as a string.',
+    difficulty: 'hard',
+    correctPattern: 'graphs',
+    hints: ['Build graph from adjacent word pairs', 'Topological sort to find order']
+  },
+  {
+    id: '2036',
+    title: 'Critical Connections in Network',
+    description: 'Given n servers and connections between them, find all critical connections. A connection is critical if removing it will make some servers unable to reach each other.',
+    difficulty: 'hard',
+    correctPattern: 'graphs',
+    hints: ['Find bridges in graph using Tarjan algorithm', 'Track discovery and low times']
+  },
+  {
+    id: '2037',
+    title: 'Swim in Rising Water',
+    description: 'Given an n x n grid where each value grid[i][j] represents the elevation, find the minimum time to reach bottom-right from top-left when water level rises.',
+    difficulty: 'hard',
+    correctPattern: 'graphs',
+    hints: ['Binary search on time or Dijkstra', 'BFS/DFS checking if path exists at given time']
+  },
+  {
+    id: '2038',
+    title: 'Bus Routes',
+    description: 'Given an array routes where routes[i] is a bus route, return the minimum number of buses needed to travel from source to target. Return -1 if impossible.',
+    difficulty: 'hard',
+    correctPattern: 'graphs',
+    hints: ['Build graph of bus routes', 'BFS on bus routes, not stops']
+  },
+  {
+    id: '2039',
+    title: 'Shortest Path Visiting All Nodes',
+    description: 'Given an undirected connected graph, return length of the shortest path that visits every node. You may start and stop at any node and revisit nodes.',
+    difficulty: 'hard',
+    correctPattern: 'graphs',
+    hints: ['BFS with state (node, visited_mask)', 'Use bitmask for visited nodes']
+  },
+  {
+    id: '2040',
+    title: 'Regular Expression Matching',
+    description: 'Given an input string s and a pattern p with support for . (any char) and * (zero or more of preceding), implement pattern matching.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = does s[0:i] match p[0:j]', 'Handle * by matching 0 or more characters']
+  },
+  {
+    id: '2041',
+    title: 'Wildcard Matching',
+    description: 'Given string s and pattern p with support for ? (any single char) and * (any sequence), implement wildcard pattern matching.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = does s[0:i] match p[0:j]', 'For *, try matching 0 or more characters']
+  },
+  {
+    id: '2042',
+    title: 'Interleaving String',
+    description: 'Given strings s1, s2, and s3, return whether s3 is formed by interleaving s1 and s2.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = can form s3[0:i+j] from s1[0:i] and s2[0:j]', 'Try taking character from s1 or s2']
+  },
+  {
+    id: '2043',
+    title: 'Distinct Subsequences',
+    description: 'Given strings s and t, return the number of distinct subsequences of s which equals t.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = ways to form t[0:j] from s[0:i]', 'If match, add ways without current char']
+  },
+  {
+    id: '2044',
+    title: 'Best Time to Buy and Sell Stock III',
+    description: 'Given an array prices, return the maximum profit with at most two transactions. You must sell before buying again.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['Track 4 states: buy1, sell1, buy2, sell2', 'Update each state based on previous states']
+  },
+  {
+    id: '2045',
+    title: 'Best Time to Buy and Sell Stock IV',
+    description: 'Given an array prices and integer k, return the maximum profit with at most k transactions.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = max profit with j transactions by day i', 'Track buy and sell states for each transaction']
+  },
+  {
+    id: '2046',
+    title: 'Maximal Rectangle',
+    description: 'Given a 2D binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s and return its area.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['Convert to histogram for each row', 'Track heights using DP']
+  },
+  {
+    id: '2047',
+    title: 'Scramble String',
+    description: 'Given strings s1 and s2, return if s2 is a scrambled string of s1. A scrambled string is formed by recursively dividing and swapping substrings.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['3D DP or memoized recursion', 'Try all possible split points']
+  },
+  {
+    id: '2048',
+    title: 'Minimum Window Subsequence',
+    description: 'Given strings s and t, return the minimum window in s which will contain all characters in t in sequence.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['DP[i][j] = start index of window ending at s[i] matching t[0:j]', 'Track minimum window length']
+  },
+  {
+    id: '2049',
+    title: 'Burst Balloons',
+    description: 'Given n balloons with coins, burst all balloons. If you burst balloon i, you get nums[i-1] * nums[i] * nums[i+1] coins. Return maximum coins you can collect.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['Think backwards: which balloon to burst last', 'DP on subarrays']
+  },
+  {
+    id: '2050',
+    title: 'Minimum Cost to Merge Stones',
+    description: 'Given n piles of stones and integer k, merge exactly k consecutive piles into one until one pile remains. Return minimum cost.',
+    difficulty: 'hard',
+    correctPattern: 'dynamic_programming',
+    hints: ['3D DP: DP[i][j][m] = cost to merge piles i to j into m piles', 'Use prefix sum for pile sums']
+  },
+  {
+    id: '2051',
+    title: 'Super Ugly Number',
+    description: 'Given an integer n and an array of primes, return the nth super ugly number. A super ugly number is a positive integer whose prime factors are in the given array.',
+    difficulty: 'hard',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Use min heap to generate numbers in order', 'Avoid duplicates with set']
+  },
+  {
+    id: '2052',
+    title: 'Find Median from Data Stream',
+    description: 'Design a data structure that supports adding integers and finding the median in O(log n) and O(1) time respectively.',
+    difficulty: 'hard',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Two heaps: max heap for lower half, min heap for upper', 'Keep heaps balanced']
+  },
+  {
+    id: '2053',
+    title: 'IPO',
+    description: 'Given n projects with profits and capital requirements, and initial capital w, maximize capital by completing at most k projects.',
+    difficulty: 'hard',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Min heap for capital, max heap for profits', 'Add available projects to profit heap']
+  },
+  {
+    id: '2054',
+    title: 'Sliding Window Median',
+    description: 'Given an array nums and integer k, return the median of each window of size k as it slides from left to right.',
+    difficulty: 'hard',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Two heaps for median', 'Lazy deletion or multiset for removing elements']
+  },
+  {
+    id: '2055',
+    title: 'Smallest Range Covering K Lists',
+    description: 'Given k sorted integer lists, find the smallest range that includes at least one number from each list.',
+    difficulty: 'hard',
+    correctPattern: 'heap_priority_queue',
+    hints: ['Min heap with (value, list_index, element_index)', 'Track maximum value while processing']
+  },
+  {
+    id: '2056',
+    title: 'Candy',
+    description: 'Given n children with ratings, distribute candies such that each child has at least one, and children with higher rating get more than neighbors. Minimize total candies.',
+    difficulty: 'hard',
+    correctPattern: 'greedy',
+    hints: ['Two passes: left-to-right and right-to-left', 'Take maximum from both passes']
+  },
+  {
+    id: '2057',
+    title: 'Jump Game III',
+    description: 'Given array arr and start index, determine if you can reach any index with value 0. From index i, jump to i + arr[i] or i - arr[i].',
+    difficulty: 'hard',
+    correctPattern: 'greedy',
+    hints: ['BFS or DFS to explore reachable indices', 'Mark visited to avoid cycles']
+  },
+  {
+    id: '2058',
+    title: 'Remove Duplicate Letters',
+    description: 'Given a string s, remove duplicate letters so the result is the smallest in lexicographical order. Each letter must appear once.',
+    difficulty: 'hard',
+    correctPattern: 'greedy',
+    hints: ['Use stack to build result', 'Remove larger characters if they appear later']
+  },
+  {
+    id: '2059',
+    title: 'Patching Array',
+    description: 'Given a sorted array nums and integer n, add/patch elements so that any number in range [1, n] can be formed by sum of some elements. Return minimum patches.',
+    difficulty: 'hard',
+    correctPattern: 'greedy',
+    hints: ['Track current reachable range [1, miss)', 'Add miss when needed']
+  },
+  {
+    id: '2060',
+    title: 'Create Maximum Number',
+    description: 'Given two arrays nums1 and nums2, create the maximum number of length k using digits from both arrays while preserving relative order.',
+    difficulty: 'hard',
+    correctPattern: 'greedy',
+    hints: ['Try all valid splits: i from nums1, k-i from nums2', 'Use monotonic stack for each subproblem']
   },
 ]
 
