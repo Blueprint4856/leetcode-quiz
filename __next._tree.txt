@@ -1,2 +1,2 @@
-:HL["/leetcode-quiz/_next/static/chunks/90e5204ec9bdede3.css","style"]
-0:{"buildId":"Ui7s0GT0seCerne0GKcCm","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/leetcode-quiz/_next/static/chunks/6777a4e48846803a.css","style"]
+0:{"buildId":"ydhfBfgeXfmLgv2YmmFIX","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
