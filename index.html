@@ -49,11 +49,35 @@
             <h2>Quiz Complete!</h2>
             <div id="score-display"></div>
             <div id="time-display"></div>
+
+            <div id="name-entry-section">
+                <p>Save your score to the leaderboard:</p>
+                <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
+                <button id="save-score-btn">Save Score</button>
+            </div>
+
             <button id="restart-btn">Restart Quiz</button>
+            <button id="view-leaderboard-btn">View Leaderboard</button>
+        </div>
+
+        <div id="leaderboard-container" class="hidden">
+            <h2>🏆 Leaderboard</h2>
+
+            <div id="difficulty-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="easy">Easy</button>
+                <button class="filter-btn" data-filter="medium">Medium</button>
+                <button class="filter-btn" data-filter="hard">Hard</button>
+            </div>
+
+            <div id="leaderboard-list"></div>
+
+            <button id="close-leaderboard-btn">Close</button>
         </div>
 
         <div id="score-tracker">
             <span id="current-score">Score: 0/0</span>
+            <button id="leaderboard-icon-btn" title="View Leaderboard">🏆</button>
         </div>
     </div>
 

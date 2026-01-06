@@ -75,6 +75,17 @@ const scoreDisplay = document.getElementById('score-display');
 const timeDisplay = document.getElementById('time-display');
 const timerElement = document.getElementById('timer');
 const restartBtn = document.getElementById('restart-btn');
+const playerNameInput = document.getElementById('player-name');
+const saveScoreBtn = document.getElementById('save-score-btn');
+const viewLeaderboardBtn = document.getElementById('view-leaderboard-btn');
+const leaderboardContainer = document.getElementById('leaderboard-container');
+const leaderboardList = document.getElementById('leaderboard-list');
+const closeLeaderboardBtn = document.getElementById('close-leaderboard-btn');
+const leaderboardIconBtn = document.getElementById('leaderboard-icon-btn');
+const nameEntrySection = document.getElementById('name-entry-section');
+
+// Leaderboard state
+let currentFilter = 'all';
 
 // Shuffle array using Fisher-Yates algorithm
 function shuffleArray(array) {
@@ -113,6 +124,79 @@ function formatTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
   return `${mins}m ${secs}s`;
+}
+
+// Leaderboard functions
+function saveScore(name, score, time, difficulty) {
+  const leaderboard = getLeaderboard();
+  leaderboard.push({
+    name: name,
+    score: score,
+    time: time,
+    difficulty: difficulty,
+    date: new Date().toISOString()
+  });
+  localStorage.setItem('leetcode-quiz-leaderboard', JSON.stringify(leaderboard));
+}
+
+function getLeaderboard() {
+  const data = localStorage.getItem('leetcode-quiz-leaderboard');
+  return data ? JSON.parse(data) : [];
+}
+
+function displayLeaderboard(filter = 'all') {
+  let leaderboard = getLeaderboard();
+
+  // Filter by difficulty
+  if (filter !== 'all') {
+    leaderboard = leaderboard.filter(entry => entry.difficulty === filter);
+  }
+
+  // Sort by time (ascending), then by score (descending)
+  leaderboard.sort((a, b) => {
+    if (a.time !== b.time) {
+      return a.time - b.time;
+    }
+    return b.score - a.score;
+  });
+
+  // Display top 10
+  leaderboard = leaderboard.slice(0, 10);
+
+  if (leaderboard.length === 0) {
+    leaderboardList.innerHTML = '<div class="empty-leaderboard">No entries yet. Be the first!</div>';
+    return;
+  }
+
+  leaderboardList.innerHTML = leaderboard.map((entry, index) => {
+    const topClass = index < 3 ? 'top-3' : '';
+    const rank = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+
+    return `
+      <div class="leaderboard-entry ${topClass}">
+        <span class="leaderboard-rank">${rank}</span>
+        <span class="leaderboard-name">${entry.name}</span>
+        <div class="leaderboard-stats">
+          <span class="leaderboard-score">${entry.score} correct</span>
+          <span class="leaderboard-time">${formatTime(entry.time)}</span>
+          <span class="leaderboard-difficulty ${entry.difficulty}">${entry.difficulty.toUpperCase()}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function showLeaderboard() {
+  difficultySelector.classList.add('hidden');
+  quizContainer.classList.add('hidden');
+  resultsContainer.classList.add('hidden');
+  leaderboardContainer.classList.remove('hidden');
+  displayLeaderboard(currentFilter);
+}
+
+function hideLeaderboard() {
+  leaderboardContainer.classList.add('hidden');
+  initApp();
 }
 
 // Initialize app - show difficulty selector
@@ -269,11 +353,54 @@ function showResults() {
   const avgTime = Math.round(totalTime / filteredQuestions.length);
   timeDisplay.textContent = `Total Time: ${formatTime(totalTime)} | Average: ${formatTime(avgTime)} per question`;
 
+  // Reset name entry
+  playerNameInput.value = '';
+  saveScoreBtn.disabled = false;
+  nameEntrySection.style.display = 'block';
+
   progressFill.style.width = '100%';
 }
 
-// Restart quiz
+// Event listeners
 restartBtn.addEventListener('click', initApp);
+
+saveScoreBtn.addEventListener('click', () => {
+  const name = playerNameInput.value.trim();
+  if (name) {
+    saveScore(name, score, totalTime, selectedDifficulty);
+    saveScoreBtn.disabled = true;
+    saveScoreBtn.textContent = 'Saved!';
+    playerNameInput.disabled = true;
+
+    // Show success message briefly
+    setTimeout(() => {
+      nameEntrySection.style.display = 'none';
+    }, 1500);
+  } else {
+    playerNameInput.focus();
+  }
+});
+
+viewLeaderboardBtn.addEventListener('click', showLeaderboard);
+leaderboardIconBtn.addEventListener('click', showLeaderboard);
+closeLeaderboardBtn.addEventListener('click', hideLeaderboard);
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    displayLeaderboard(currentFilter);
+  });
+});
+
+// Allow Enter key to save score
+playerNameInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && !saveScoreBtn.disabled) {
+    saveScoreBtn.click();
+  }
+});
 
 // Start app on page load
 initApp();
