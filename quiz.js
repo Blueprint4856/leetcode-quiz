@@ -56,6 +56,9 @@ let score = 0;
 let answered = false;
 let filteredQuestions = [];
 let selectedDifficulty = '';
+let timerInterval = null;
+let startTime = 0;
+let totalTime = 0;
 
 // DOM Elements
 const difficultySelector = document.getElementById('difficulty-selector');
@@ -69,6 +72,8 @@ const feedback = document.getElementById('feedback');
 const progressFill = document.getElementById('progress-fill');
 const currentScoreDisplay = document.getElementById('current-score');
 const scoreDisplay = document.getElementById('score-display');
+const timeDisplay = document.getElementById('time-display');
+const timerElement = document.getElementById('timer');
 const restartBtn = document.getElementById('restart-btn');
 
 // Shuffle array using Fisher-Yates algorithm
@@ -81,8 +86,43 @@ function shuffleArray(array) {
   return shuffled;
 }
 
+// Start timer for current question
+function startTimer() {
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    timerElement.textContent = `${elapsed}s`;
+  }, 100);
+}
+
+// Stop timer and record time
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    totalTime += elapsed;
+  }
+}
+
+// Format time in seconds to readable format
+function formatTime(seconds) {
+  if (seconds < 60) {
+    return `${seconds}s`;
+  }
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}m ${secs}s`;
+}
+
 // Initialize app - show difficulty selector
 function initApp() {
+  // Clear any running timer
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
   difficultySelector.classList.remove('hidden');
   quizContainer.classList.add('hidden');
   resultsContainer.classList.add('hidden');
@@ -110,6 +150,7 @@ function startQuiz(difficulty) {
   currentQuestion = 0;
   score = 0;
   answered = false;
+  totalTime = 0;
 
   difficultySelector.classList.add('hidden');
   quizContainer.classList.remove('hidden');
@@ -158,6 +199,10 @@ function displayQuestion() {
     btn.disabled = false;
   });
 
+  // Reset and start timer
+  timerElement.textContent = '0s';
+  startTimer();
+
   updateProgress();
 }
 
@@ -166,6 +211,8 @@ function selectAnswer(selectedCategory, btn) {
   if (answered) return;
 
   answered = true;
+  stopTimer();
+
   const correctAnswer = filteredQuestions[currentQuestion].answer;
 
   // Add selected state to clicked button
@@ -210,11 +257,17 @@ function updateScore() {
 
 // Show final results
 function showResults() {
+  stopTimer(); // Ensure timer is stopped
+
   quizContainer.classList.add('hidden');
   resultsContainer.classList.remove('hidden');
 
   const percentage = Math.round((score / filteredQuestions.length) * 100);
   scoreDisplay.textContent = `${score}/${filteredQuestions.length} (${percentage}%)`;
+
+  // Display time statistics
+  const avgTime = Math.round(totalTime / filteredQuestions.length);
+  timeDisplay.textContent = `Total Time: ${formatTime(totalTime)} | Average: ${formatTime(avgTime)} per question`;
 
   progressFill.style.width = '100%';
 }
