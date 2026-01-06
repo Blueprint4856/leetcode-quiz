@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useQuestions } from '@/hooks/queries/useQuestions'
 import { useTimer } from '@/hooks/ui/useTimer'
@@ -14,7 +14,7 @@ import { Button } from '@/components/shared/Button'
 import { Card } from '@/components/shared/Card'
 import { Pattern, Difficulty, Answer } from '@/lib/types/quiz'
 
-export default function QuizPage() {
+function QuizPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const difficulty = (searchParams.get('difficulty') as Difficulty) || 'all'
@@ -293,5 +293,21 @@ export default function QuizPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-purple-700 p-4 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-bounce">🎯</div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto mb-6" />
+          <p className="text-2xl font-bold text-white">Loading quiz...</p>
+        </div>
+      </div>
+    }>
+      <QuizPageContent />
+    </Suspense>
   )
 }
