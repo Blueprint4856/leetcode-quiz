@@ -3,8 +3,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "LeetCode Pattern Quiz",
-  description: "Mobile-first quiz app for learning LeetCode problem patterns",
+  title: "LeetTrac",
+  description: "Master LeetCode patterns without writing a single line of code",
 };
 
 export default function RootLayout({

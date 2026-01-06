@@ -66,7 +66,7 @@ export function DifficultySelector() {
         <div className="mb-8 animate-bounce-in">
           <div className="text-6xl mb-4 animate-pulse-glow inline-block">🎯</div>
           <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
-            Pattern Quiz
+            LeetTrac
           </h1>
           <p className="text-lg text-gray-700 leading-relaxed font-medium">
             Master LeetCode patterns without writing a single line of code
