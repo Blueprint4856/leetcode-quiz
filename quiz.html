@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Pattern Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 LeetCode Pattern Quiz</h1>
+            <p>Identify which pattern each LeetCode problem belongs to</p>
+        </header>
+
+        <div id="difficulty-selector" class="hidden">
+            <h2>Select Difficulty</h2>
+            <div id="difficulty-buttons">
+                <button class="difficulty-btn" data-difficulty="easy">Easy (10 questions)</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium (10 questions)</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard (10 questions)</button>
+                <button class="difficulty-btn" data-difficulty="all">All Levels (30 questions)</button>
+            </div>
+        </div>
+
+        <div id="quiz-container">
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+
+            <div id="question-section">
+                <h2 id="question-number"></h2>
+                <h3 id="question-text"></h3>
+                <span id="difficulty-badge"></span>
+            </div>
+
+            <div id="categories-section">
+                <h4>Select a category:</h4>
+                <div id="categories-grid"></div>
+            </div>
+
+            <div id="feedback" class="hidden"></div>
+        </div>
+
+        <div id="results-container" class="hidden">
+            <h2>Quiz Complete!</h2>
+            <div id="score-display"></div>
+            <button id="restart-btn">Restart Quiz</button>
+        </div>
+
+        <div id="score-tracker">
+            <span id="current-score">Score: 0/0</span>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
