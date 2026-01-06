@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils/cn'
 export function DifficultySelector() {
   const router = useRouter()
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>('all')
+  const [timerEnabled, setTimerEnabled] = useState(true)
 
   const difficulties: {
     value: Difficulty
@@ -54,7 +55,7 @@ export function DifficultySelector() {
   ]
 
   const handleStartQuiz = () => {
-    router.push(`/quiz?difficulty=${selectedDifficulty}`)
+    router.push(`/quiz?difficulty=${selectedDifficulty}&timed=${timerEnabled}`)
   }
 
   const selectedDiff = difficulties.find(d => d.value === selectedDifficulty)
@@ -123,6 +124,32 @@ export function DifficultySelector() {
               </button>
             )
           })}
+        </div>
+
+        {/* Timer Toggle */}
+        <div className="mb-6 flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+          <span className="text-2xl">⏱️</span>
+          <span className="text-base font-semibold text-gray-800">Timer</span>
+          <button
+            onClick={() => setTimerEnabled(!timerEnabled)}
+            className={cn(
+              "relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2",
+              timerEnabled ? "bg-gradient-to-r from-purple-500 to-pink-500" : "bg-gray-300"
+            )}
+          >
+            <span
+              className={cn(
+                "inline-block h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform",
+                timerEnabled ? "translate-x-7" : "translate-x-1"
+              )}
+            />
+          </button>
+          <span className={cn(
+            "text-sm font-medium",
+            timerEnabled ? "text-purple-700" : "text-gray-500"
+          )}>
+            {timerEnabled ? "On" : "Off"}
+          </span>
         </div>
 
         {/* Start Button */}

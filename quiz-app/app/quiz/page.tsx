@@ -13,11 +13,13 @@ import { Feedback } from '@/components/quiz/Feedback'
 import { Button } from '@/components/shared/Button'
 import { Card } from '@/components/shared/Card'
 import { Pattern, Difficulty, Answer } from '@/lib/types/quiz'
+import { cn } from '@/lib/utils/cn'
 
 function QuizPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const difficulty = (searchParams.get('difficulty') as Difficulty) || 'all'
+  const timedMode = searchParams.get('timed') === 'true'
 
   // Fetch questions
   const { data: questions, isLoading, error } = useQuestions({ difficulty, limit: 10 })
@@ -32,12 +34,12 @@ function QuizPageContent() {
   // Timer
   const { seconds, start, pause, reset } = useTimer(false)
 
-  // Start timer when questions load
+  // Start timer when questions load (only if timed mode is enabled)
   useEffect(() => {
-    if (questions && questions.length > 0) {
+    if (questions && questions.length > 0 && timedMode) {
       start()
     }
-  }, [questions, start])
+  }, [questions, start, timedMode])
 
   // Handle pattern selection
   const handlePatternSelect = (pattern: Pattern) => {
@@ -169,19 +171,24 @@ function QuizPageContent() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className={cn(
+              "gap-4 mb-6",
+              timedMode ? "grid grid-cols-2" : "flex justify-center"
+            )}>
               <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border-2 border-green-200">
                 <div className="text-3xl mb-2">✅</div>
                 <div className="text-sm text-gray-600 font-medium">Correct</div>
                 <div className="text-2xl font-bold text-green-700">{score}</div>
               </div>
-              <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-2 border-blue-200">
-                <div className="text-3xl mb-2">⏱️</div>
-                <div className="text-sm text-gray-600 font-medium">Time</div>
-                <div className="text-2xl font-bold text-blue-700">
-                  {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}
+              {timedMode && (
+                <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-2 border-blue-200">
+                  <div className="text-3xl mb-2">⏱️</div>
+                  <div className="text-sm text-gray-600 font-medium">Time</div>
+                  <div className="text-2xl font-bold text-blue-700">
+                    {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Motivational Message */}
@@ -243,7 +250,7 @@ function QuizPageContent() {
             >
               ← Quit
             </Button>
-            <Timer seconds={seconds} />
+            {timedMode && <Timer seconds={seconds} />}
           </div>
 
           <ProgressBar current={currentIndex + 1} total={totalQuestions} />
