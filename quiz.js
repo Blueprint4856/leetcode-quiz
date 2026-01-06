@@ -71,6 +71,16 @@ const currentScoreDisplay = document.getElementById('current-score');
 const scoreDisplay = document.getElementById('score-display');
 const restartBtn = document.getElementById('restart-btn');
 
+// Shuffle array using Fisher-Yates algorithm
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 // Initialize app - show difficulty selector
 function initApp() {
   difficultySelector.classList.remove('hidden');
@@ -93,6 +103,9 @@ function startQuiz(difficulty) {
   } else {
     filteredQuestions = questions.filter(q => q.mode === difficulty);
   }
+
+  // Randomize question order
+  filteredQuestions = shuffleArray(filteredQuestions);
 
   currentQuestion = 0;
   score = 0;
