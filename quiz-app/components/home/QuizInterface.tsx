@@ -145,27 +145,27 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3 md:space-y-4">
       {/* Filter Bar */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {/* First Row: Timed + Difficulty Pills */}
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
           {/* Timed Toggle */}
           <button
             onClick={() => setTimedMode(!timedMode)}
             className={cn(
-              'flex items-center gap-2 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border-2 transition-all min-h-[44px]',
+              'flex items-center gap-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-lg border-2 transition-all min-h-[36px]',
               timedMode
                 ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
                 : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
             )}
           >
-            <Clock className="w-4 h-4" />
-            <span className="font-medium text-sm">Timed</span>
+            <Clock className="w-3.5 h-3.5" />
+            <span className="font-medium text-xs">Timed</span>
           </button>
 
           {/* Difficulty Pills */}
-          <div className="flex gap-2 flex-1 overflow-x-auto">
+          <div className="flex gap-1.5 flex-1 overflow-x-auto">
             {difficulties.map((diff) => (
               <button
                 key={diff.value}
@@ -174,7 +174,7 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
                   setCurrentQuestionIndex(0)
                 }}
                 className={cn(
-                  'px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm transition-all whitespace-nowrap min-h-[44px]',
+                  'px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-medium text-xs transition-all whitespace-nowrap min-h-[36px]',
                   selectedDifficulty === diff.value
                     ? 'bg-emerald-500 text-white shadow-md'
                     : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-gray-300'
@@ -187,31 +187,31 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
         </div>
 
         {/* Second Row: Shuffle + Reset */}
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           {/* Shuffle Button */}
           <button
             onClick={handleShuffle}
-            className="flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-700 hover:border-gray-300 transition-all flex-1 min-h-[44px]"
+            className="flex items-center justify-center gap-1.5 px-3 md:px-4 py-1.5 md:py-2 rounded-lg border-2 border-gray-200 bg-white text-gray-700 hover:border-gray-300 transition-all flex-1 min-h-[36px]"
           >
-            <Shuffle className="w-4 h-4" />
-            <span className="font-medium text-sm">Shuffle</span>
+            <Shuffle className="w-3.5 h-3.5" />
+            <span className="font-medium text-xs">Shuffle</span>
           </button>
 
           {/* Reset Button */}
           <button
             onClick={handleReset}
-            className="flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 md:py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-700 hover:border-gray-300 transition-all flex-1 min-h-[44px]"
+            className="flex items-center justify-center gap-1.5 px-3 md:px-4 py-1.5 md:py-2 rounded-lg border-2 border-gray-200 bg-white text-gray-700 hover:border-gray-300 transition-all flex-1 min-h-[36px]"
           >
-            <RotateCcw className="w-4 h-4" />
-            <span className="font-medium text-sm">Reset</span>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="font-medium text-xs">Reset</span>
           </button>
         </div>
       </div>
 
       {/* Question Card */}
       <div>
-        <div className="flex items-center gap-3 mb-4">
-          <span className="text-gray-600 font-medium">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-gray-600 font-medium text-xs">
             Question #{currentQuestionIndex + 1}
           </span>
         </div>
@@ -220,7 +220,7 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
 
       {/* Pattern Selection Grid */}
       <div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
           {PATTERNS.map((pattern) => {
             const isSelected = selectedPattern === pattern.id
             const isCorrect = currentQuestion && pattern.id === currentQuestion.correctPattern
@@ -233,7 +233,7 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
                 onClick={() => handlePatternSelect(pattern.id)}
                 disabled={showFeedback}
                 className={cn(
-                  'border-2 rounded-xl p-4 md:p-5 text-left transition-all group min-h-[68px] flex items-center',
+                  'border-2 rounded-lg p-2 md:p-3 text-left transition-all group min-h-[52px] flex items-center',
                   showFeedback && 'cursor-not-allowed',
                   !showFeedback && 'hover:bg-emerald-100 hover:border-emerald-300',
                   showAsCorrect && 'bg-green-100 border-green-500',
@@ -241,10 +241,10 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
                   !showAsCorrect && !showAsIncorrect && 'bg-emerald-50 border-emerald-200'
                 )}
               >
-                <div className="flex items-center gap-2.5 w-full">
-                  <span className="text-base md:text-lg flex-shrink-0">{pattern.emoji}</span>
+                <div className="flex items-center gap-1.5 w-full">
+                  <span className="text-sm md:text-base flex-shrink-0">{pattern.emoji}</span>
                   <span className={cn(
-                    'text-xs md:text-sm font-medium leading-tight',
+                    'text-[10px] md:text-xs font-medium leading-tight',
                     showAsCorrect && 'text-green-900',
                     showAsIncorrect && 'text-red-900',
                     !showAsCorrect && !showAsIncorrect && 'text-gray-900 group-hover:text-emerald-700'
@@ -259,7 +259,7 @@ export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) 
 
         {/* Feedback */}
         {showFeedback && selectedPattern && currentQuestion && (
-          <div className="mt-6">
+          <div className="mt-3 md:mt-4">
             <Feedback
               isCorrect={selectedPattern === currentQuestion.correctPattern}
               correctPattern={currentQuestion.correctPattern}

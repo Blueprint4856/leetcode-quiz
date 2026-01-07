@@ -14,7 +14,7 @@ export function Card({
   return (
     <div
       className={cn(
-        'rounded-xl p-6',
+        'rounded-lg p-3 md:p-4',
         variant === 'default' && 'bg-white',
         variant === 'elevated' && 'bg-white shadow-lg',
         variant === 'outlined' && 'bg-white border-2 border-gray-200',

@@ -40,48 +40,48 @@ export function QuestionCard({ question }: QuestionCardProps) {
 
   return (
     <Card variant="elevated" className="w-full bg-white shadow-lg border border-gray-200 animate-slide-up">
-      <div className="space-y-5 md:space-y-6">
+      <div className="space-y-3 md:space-y-4">
         {/* Difficulty Badge */}
         <div className="flex items-center justify-between">
           <span
             className={cn(
-              'px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold capitalize',
+              'px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold capitalize',
               question.difficulty === 'easy' && 'bg-emerald-100 text-emerald-700',
               question.difficulty === 'medium' && 'bg-yellow-100 text-yellow-700',
               question.difficulty === 'hard' && 'bg-red-100 text-red-700',
-              'flex items-center gap-2'
+              'flex items-center gap-1.5'
             )}
           >
-            <span className="text-sm">{config.emoji}</span>
+            <span className="text-xs">{config.emoji}</span>
             {question.difficulty}
           </span>
         </div>
 
         {/* Question Title */}
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">
+        <h2 className="text-base md:text-lg lg:text-xl font-extrabold text-gray-900 leading-tight">
           {question.title}
         </h2>
 
         {/* Question Description */}
-        <div className="p-5 md:p-6 rounded-xl bg-gray-50 border border-gray-200">
-          <p className="text-sm md:text-base lg:text-lg leading-relaxed text-gray-800">
+        <div className="p-3 md:p-4 rounded-lg bg-gray-50 border border-gray-200">
+          <p className="text-xs md:text-sm leading-relaxed text-gray-800">
             {question.description}
           </p>
         </div>
 
         {/* Hints */}
         {question.hints && question.hints.length > 0 && (
-          <details className="mt-4 group">
-            <summary className="cursor-pointer text-base font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-2 p-3 rounded-lg hover:bg-emerald-50 transition-all">
-              <span className="text-xl">💡</span>
+          <details className="mt-2 group">
+            <summary className="cursor-pointer text-xs md:text-sm font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-2 p-2 rounded-lg hover:bg-emerald-50 transition-all">
+              <span className="text-base">💡</span>
               Need a hint?
-              <span className="ml-auto text-xs opacity-70 group-open:rotate-180 transition-transform">▼</span>
+              <span className="ml-auto text-[10px] opacity-70 group-open:rotate-180 transition-transform">▼</span>
             </summary>
-            <ul className="mt-3 space-y-3">
+            <ul className="mt-2 space-y-2">
               {question.hints.map((hint, index) => (
                 <li
                   key={index}
-                  className="pl-4 py-3 rounded-lg text-sm text-gray-700 border-l-4 border-emerald-400 bg-emerald-50 animate-slide-up"
+                  className="pl-3 py-2 rounded-lg text-xs text-gray-700 border-l-4 border-emerald-400 bg-emerald-50 animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <span className="font-medium">Hint {index + 1}:</span> {hint}
