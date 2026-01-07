@@ -19,11 +19,12 @@ interface QuizInterfaceProps {
     selectedPattern?: Pattern,
     questionTitle?: string
   ) => void
+  resetStats: () => void
 }
 
-export function QuizInterface({ recordAnswer }: QuizInterfaceProps) {
+export function QuizInterface({ recordAnswer, resetStats }: QuizInterfaceProps) {
   const router = useRouter()
-  const { settings } = useSettings()
+  const { settings, resetSettings } = useSettings()
   const [timedMode, setTimedMode] = useState(false)
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all'>('all')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -55,11 +56,20 @@ export function QuizInterface({ recordAnswer }: QuizInterfaceProps) {
   }
 
   const handleReset = () => {
-    setCurrentQuestionIndex(0)
-    setSelectedDifficulty('all')
-    setTimedMode(false)
-    setSelectedPattern(undefined)
-    setShowFeedback(false)
+    if (confirm('Are you sure you want to reset everything? This will clear:\n\n• All statistics and progress\n• All pattern selections (reset to all 12)\n• All language selections (reset to Pseudocode)\n• Current quiz state\n\nThis action cannot be undone.')) {
+      // Reset all stats
+      resetStats()
+
+      // Reset all settings
+      resetSettings()
+
+      // Reset quiz state
+      setCurrentQuestionIndex(0)
+      setSelectedDifficulty('all')
+      setTimedMode(false)
+      setSelectedPattern(undefined)
+      setShowFeedback(false)
+    }
   }
 
   // Reset index when filtered questions change
