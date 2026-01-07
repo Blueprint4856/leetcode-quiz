@@ -40,31 +40,31 @@ export function QuestionCard({ question }: QuestionCardProps) {
 
   return (
     <Card variant="elevated" className="w-full bg-white shadow-lg border border-gray-200 animate-slide-up">
-      <div className="space-y-5">
+      <div className="space-y-4 md:space-y-5">
         {/* Difficulty Badge */}
         <div className="flex items-center justify-between">
           <span
             className={cn(
-              'px-4 py-2 rounded-full text-sm font-bold capitalize',
+              'px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold capitalize',
               question.difficulty === 'easy' && 'bg-emerald-100 text-emerald-700',
               question.difficulty === 'medium' && 'bg-yellow-100 text-yellow-700',
               question.difficulty === 'hard' && 'bg-red-100 text-red-700',
-              'flex items-center gap-2'
+              'flex items-center gap-1.5 md:gap-2'
             )}
           >
-            <span className="text-base">{config.emoji}</span>
+            <span className="text-sm md:text-base">{config.emoji}</span>
             {question.difficulty}
           </span>
         </div>
 
         {/* Question Title */}
-        <h2 className="text-3xl font-extrabold text-gray-900 leading-tight">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-tight">
           {question.title}
         </h2>
 
         {/* Question Description */}
-        <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
-          <p className="text-lg leading-relaxed text-gray-800">
+        <div className="p-4 md:p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <p className="text-sm md:text-base lg:text-lg leading-relaxed text-gray-800">
             {question.description}
           </p>
         </div>
