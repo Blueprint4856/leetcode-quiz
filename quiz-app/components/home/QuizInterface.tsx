@@ -69,9 +69,15 @@ export function QuizInterface() {
 
     const isCorrect = pattern === currentQuestion.correctPattern
 
-    // Update global stats
+    // Update global stats with detailed tracking
     const questionDifficulty = currentQuestion.difficulty as Difficulty
-    recordAnswer(isCorrect, questionDifficulty)
+    recordAnswer(
+      isCorrect,
+      questionDifficulty,
+      currentQuestion.correctPattern,
+      pattern,
+      currentQuestion.title
+    )
 
     // Show feedback
     setShowFeedback(true)

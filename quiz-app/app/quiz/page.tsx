@@ -72,9 +72,15 @@ function QuizPageContent() {
     setAnswers(prev => [...prev, answer])
     setShowFeedback(true)
 
-    // Update global stats with difficulty tracking
+    // Update global stats with detailed tracking
     const questionDifficulty = currentQuestion.difficulty as Difficulty
-    recordAnswer(isCorrect, questionDifficulty)
+    recordAnswer(
+      isCorrect,
+      questionDifficulty,
+      currentQuestion.correctPattern,
+      pattern,
+      currentQuestion.title
+    )
 
     // Auto advance after 2 seconds
     setTimeout(() => {

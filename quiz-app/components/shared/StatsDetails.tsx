@@ -1,6 +1,7 @@
 'use client'
 
 import { QuizStats } from '@/hooks/ui/useQuizStats'
+import { PATTERNS } from '@/lib/data/questions'
 import { cn } from '@/lib/utils/cn'
 
 interface StatsDetailsProps {
@@ -88,6 +89,113 @@ export function StatsDetails({ stats }: StatsDetailsProps) {
           </div>
         </div>
       </div>
+
+      {/* Pattern Performance */}
+      <div>
+        <h3 className="text-sm font-bold text-gray-900 mb-3">Performance by Pattern</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          {PATTERNS.map((pattern) => {
+            const patternStats = stats.byPattern[pattern.id as keyof typeof stats.byPattern]
+            const hasData = patternStats && patternStats.answered > 0
+            const accuracy = hasData ? patternStats.accuracy : 0
+
+            return (
+              <div
+                key={pattern.id}
+                className={cn(
+                  "bg-white rounded-lg p-3 border-2 transition-all",
+                  hasData ? "border-gray-200" : "border-gray-100 opacity-50"
+                )}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-lg">{pattern.emoji}</span>
+                  <span className="text-xs font-semibold text-gray-700 truncate flex-1">
+                    {pattern.label}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className={cn(
+                    "text-base font-bold",
+                    hasData ? (
+                      accuracy >= 70 ? "text-green-700" : accuracy >= 50 ? "text-yellow-700" : "text-red-700"
+                    ) : "text-gray-400"
+                  )}>
+                    {hasData ? `${patternStats.correct}/${patternStats.answered}` : '0/0'}
+                  </span>
+                  <span className={cn(
+                    "text-sm font-bold px-2 py-0.5 rounded",
+                    hasData ? (
+                      accuracy >= 70 ? "bg-green-100 text-green-700" : accuracy >= 50 ? "bg-yellow-100 text-yellow-700" : "bg-red-100 text-red-700"
+                    ) : "bg-gray-100 text-gray-400"
+                  )}>
+                    {accuracy}%
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Recent Answers */}
+      {stats.recentAnswers.length > 0 && (
+        <div>
+          <h3 className="text-sm font-bold text-gray-900 mb-3">Recent Answers</h3>
+          <div className="space-y-2 max-h-[300px] overflow-y-auto">
+            {stats.recentAnswers.map((answer, index) => {
+              const selectedPatternInfo = PATTERNS.find(p => p.id === answer.selectedPattern)
+              const correctPatternInfo = PATTERNS.find(p => p.id === answer.correctPattern)
+
+              return (
+                <div
+                  key={index}
+                  className={cn(
+                    "bg-white rounded-lg p-3 border-2",
+                    answer.isCorrect ? "border-green-200" : "border-red-200"
+                  )}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-lg">
+                          {answer.isCorrect ? '✅' : '❌'}
+                        </span>
+                        <span className="text-xs font-semibold text-gray-900 truncate">
+                          {answer.questionTitle}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {!answer.isCorrect && (
+                          <>
+                            <span className="text-xs text-gray-600">
+                              Your answer: {selectedPatternInfo?.emoji} {selectedPatternInfo?.label}
+                            </span>
+                            <span className="text-xs text-gray-400">→</span>
+                          </>
+                        )}
+                        <span className="text-xs font-medium text-emerald-700">
+                          {correctPatternInfo?.emoji} {correctPatternInfo?.label}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                      <span className={cn(
+                        'px-2 py-0.5 rounded text-[10px] font-semibold capitalize',
+                        getDifficultyColor(answer.difficulty)
+                      )}>
+                        {answer.difficulty}
+                      </span>
+                      <span className="text-[10px] text-gray-500">
+                        {formatDate(answer.date)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Recent Sessions */}
       {stats.recentSessions.length > 0 && (

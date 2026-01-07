@@ -1,10 +1,25 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Difficulty } from '@/lib/types/quiz'
+import { Difficulty, Pattern } from '@/lib/types/quiz'
 
 export interface DifficultyStats {
   answered: number
   correct: number
   accuracy: number
+}
+
+export interface PatternStats {
+  answered: number
+  correct: number
+  accuracy: number
+}
+
+export interface RecentAnswer {
+  date: string
+  questionTitle: string
+  selectedPattern: Pattern
+  correctPattern: Pattern
+  isCorrect: boolean
+  difficulty: Difficulty
 }
 
 export interface QuizStats {
@@ -18,20 +33,51 @@ export interface QuizStats {
     medium: DifficultyStats
     hard: DifficultyStats
   }
+  byPattern: Record<Pattern, PatternStats>
   recentSessions: Array<{
     date: string
     score: number
     total: number
     difficulty: Difficulty
   }>
+  recentAnswers: RecentAnswer[]
 }
 
 const STATS_KEY = 'leettrac_quiz_stats'
+
+const ALL_PATTERNS: Pattern[] = [
+  'arrays_and_hashing',
+  'two_pointers',
+  'sliding_window',
+  'stack',
+  'binary_search',
+  'linked_list',
+  'trees',
+  'graphs',
+  'backtracking',
+  'dynamic_programming',
+  'greedy',
+  'heap_priority_queue',
+]
 
 const defaultDifficultyStats: DifficultyStats = {
   answered: 0,
   correct: 0,
   accuracy: 0,
+}
+
+const defaultPatternStats: PatternStats = {
+  answered: 0,
+  correct: 0,
+  accuracy: 0,
+}
+
+const createDefaultPatternStats = (): Record<Pattern, PatternStats> => {
+  const stats: any = {}
+  ALL_PATTERNS.forEach((pattern) => {
+    stats[pattern] = { ...defaultPatternStats }
+  })
+  return stats
 }
 
 const defaultStats: QuizStats = {
@@ -45,7 +91,9 @@ const defaultStats: QuizStats = {
     medium: { ...defaultDifficultyStats },
     hard: { ...defaultDifficultyStats },
   },
+  byPattern: createDefaultPatternStats(),
   recentSessions: [],
+  recentAnswers: [],
 }
 
 export function useQuizStats() {
@@ -63,7 +111,9 @@ export function useQuizStats() {
             ...defaultStats,
             ...parsed,
             byDifficulty: parsed.byDifficulty || defaultStats.byDifficulty,
+            byPattern: parsed.byPattern || defaultStats.byPattern,
             recentSessions: parsed.recentSessions || [],
+            recentAnswers: parsed.recentAnswers || [],
           }
           setStats(migratedStats)
         }
@@ -85,7 +135,13 @@ export function useQuizStats() {
   }, [stats])
 
   // Record a new answer
-  const recordAnswer = useCallback((isCorrect: boolean, difficulty?: Difficulty) => {
+  const recordAnswer = useCallback((
+    isCorrect: boolean,
+    difficulty?: Difficulty,
+    correctPattern?: Pattern,
+    selectedPattern?: Pattern,
+    questionTitle?: string
+  ) => {
     setStats((prev) => {
       const newTotalAnswered = prev.totalAnswered + 1
       const newTotalCorrect = prev.totalCorrect + (isCorrect ? 1 : 0)
@@ -107,6 +163,36 @@ export function useQuizStats() {
         }
       }
 
+      // Update pattern-specific stats
+      const newByPattern = { ...prev.byPattern }
+      if (correctPattern && newByPattern[correctPattern]) {
+        const patternStats = newByPattern[correctPattern]
+        const newAnswered = patternStats.answered + 1
+        const newCorrect = patternStats.correct + (isCorrect ? 1 : 0)
+        newByPattern[correctPattern] = {
+          answered: newAnswered,
+          correct: newCorrect,
+          accuracy: Math.round((newCorrect / newAnswered) * 100),
+        }
+      }
+
+      // Add to recent answers
+      const newRecentAnswers = [...prev.recentAnswers]
+      if (correctPattern && selectedPattern && questionTitle && difficulty) {
+        newRecentAnswers.unshift({
+          date: new Date().toISOString(),
+          questionTitle,
+          selectedPattern,
+          correctPattern,
+          isCorrect,
+          difficulty,
+        })
+        // Keep only last 20 answers
+        if (newRecentAnswers.length > 20) {
+          newRecentAnswers.pop()
+        }
+      }
+
       return {
         totalAnswered: newTotalAnswered,
         totalCorrect: newTotalCorrect,
@@ -114,7 +200,9 @@ export function useQuizStats() {
         currentStreak: newCurrentStreak,
         bestStreak: newBestStreak,
         byDifficulty: newByDifficulty,
+        byPattern: newByPattern,
         recentSessions: prev.recentSessions,
+        recentAnswers: newRecentAnswers,
       }
     })
   }, [])
