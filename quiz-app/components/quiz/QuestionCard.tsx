@@ -40,7 +40,7 @@ export function QuestionCard({ question }: QuestionCardProps) {
 
   return (
     <Card variant="elevated" className="w-full bg-white shadow-lg border border-gray-200 animate-slide-up">
-      <div className="space-y-4 md:space-y-5">
+      <div className="space-y-5 md:space-y-6">
         {/* Difficulty Badge */}
         <div className="flex items-center justify-between">
           <span
@@ -49,10 +49,10 @@ export function QuestionCard({ question }: QuestionCardProps) {
               question.difficulty === 'easy' && 'bg-emerald-100 text-emerald-700',
               question.difficulty === 'medium' && 'bg-yellow-100 text-yellow-700',
               question.difficulty === 'hard' && 'bg-red-100 text-red-700',
-              'flex items-center gap-1.5 md:gap-2'
+              'flex items-center gap-2'
             )}
           >
-            <span className="text-sm md:text-base">{config.emoji}</span>
+            <span className="text-sm">{config.emoji}</span>
             {question.difficulty}
           </span>
         </div>
@@ -63,7 +63,7 @@ export function QuestionCard({ question }: QuestionCardProps) {
         </h2>
 
         {/* Question Description */}
-        <div className="p-4 md:p-5 rounded-xl bg-gray-50 border border-gray-200">
+        <div className="p-5 md:p-6 rounded-xl bg-gray-50 border border-gray-200">
           <p className="text-sm md:text-base lg:text-lg leading-relaxed text-gray-800">
             {question.description}
           </p>

@@ -12,25 +12,25 @@ interface StatsBarProps {
 
 export function StatsBar({ accuracy, streak, best, correct, total }: StatsBarProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 px-4 md:px-6 py-3 md:py-4">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-3 md:gap-6 flex-wrap w-full sm:w-auto">
-          <div className="flex items-center gap-1.5 md:gap-2">
-            <Target className="w-4 h-4 md:w-5 md:h-5 text-emerald-600 flex-shrink-0" />
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 px-5 md:px-8 py-4 md:py-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-4 md:gap-8 flex-wrap w-full sm:w-auto">
+          <div className="flex items-center gap-2">
+            <Target className="w-4 h-4 text-emerald-600 flex-shrink-0" />
             <span className="font-bold text-gray-900 text-sm md:text-base">{accuracy}%</span>
             <span className="text-gray-600 text-xs md:text-sm hidden xs:inline">Accuracy</span>
           </div>
-          <div className="flex items-center gap-1.5 md:gap-2">
-            <Flame className="w-4 h-4 md:w-5 md:h-5 text-orange-500 flex-shrink-0" />
+          <div className="flex items-center gap-2">
+            <Flame className="w-4 h-4 text-orange-500 flex-shrink-0" />
             <span className="font-bold text-gray-900 text-sm md:text-base">{streak}</span>
             <span className="text-gray-600 text-xs md:text-sm hidden xs:inline">Streak</span>
           </div>
-          <div className="flex items-center gap-1.5 md:gap-2">
-            <Trophy className="w-4 h-4 md:w-5 md:h-5 text-emerald-600 flex-shrink-0" />
+          <div className="flex items-center gap-2">
+            <Trophy className="w-4 h-4 text-emerald-600 flex-shrink-0" />
             <span className="font-bold text-gray-900 text-sm md:text-base">{best}</span>
             <span className="text-gray-600 text-xs md:text-sm hidden xs:inline">Best</span>
           </div>
-          <div className="flex items-center gap-1.5 md:gap-2">
+          <div className="flex items-center gap-2">
             <span className="font-bold text-gray-900 text-sm md:text-base">
               {correct} / {total}
             </span>
@@ -44,7 +44,7 @@ export function StatsBar({ accuracy, streak, best, correct, total }: StatsBarPro
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5"
+            className="w-4 h-4"
           >
             <path d="M3 3v18h18" />
             <path d="M18 17V9" />

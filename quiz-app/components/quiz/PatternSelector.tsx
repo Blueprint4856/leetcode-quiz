@@ -16,7 +16,7 @@ export function PatternSelector({
   selectedPattern
 }: PatternSelectorProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
       {PATTERNS.map((pattern, index) => {
         const isSelected = selectedPattern === pattern.id
 
@@ -28,7 +28,7 @@ export function PatternSelector({
             style={{ animationDelay: `${index * 50}ms` }}
             className={cn(
               // Base styles - mobile-first with touch-friendly sizing
-              'relative min-h-[60px] sm:min-h-[72px] p-3 sm:p-4 rounded-xl font-semibold transition-all duration-200',
+              'relative min-h-[68px] sm:min-h-[76px] p-4 sm:p-5 rounded-xl font-semibold transition-all duration-200',
               'focus:outline-none focus:ring-2 focus:ring-offset-2',
               'disabled:opacity-50 disabled:cursor-not-allowed',
               'transform hover:scale-105 active:scale-95',
@@ -47,14 +47,14 @@ export function PatternSelector({
               ]
             )}
           >
-            <div className="flex flex-col items-center gap-1.5 sm:gap-2">
+            <div className="flex flex-col items-center gap-2">
               <span className={cn(
-                "text-2xl sm:text-3xl transition-transform",
+                "text-xl sm:text-2xl transition-transform",
                 isSelected && "animate-bounce"
               )}>
                 {pattern.emoji}
               </span>
-              <span className="text-[10px] sm:text-xs leading-tight text-center font-bold">
+              <span className="text-[11px] sm:text-xs leading-tight text-center font-bold">
                 {pattern.label}
               </span>
             </div>
