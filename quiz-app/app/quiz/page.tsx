@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useQuestions } from '@/hooks/queries/useQuestions'
 import { useTimer } from '@/hooks/ui/useTimer'
 import { useLocalStorage } from '@/hooks/ui/useLocalStorage'
+import { useQuizStats } from '@/hooks/ui/useQuizStats'
 import { QuestionCard } from '@/components/quiz/QuestionCard'
 import { PatternSelector } from '@/components/quiz/PatternSelector'
 import { Timer } from '@/components/quiz/Timer'
@@ -34,6 +35,9 @@ function QuizPageContent() {
   // Timer
   const { seconds, start, pause, reset } = useTimer(false)
 
+  // Stats tracking
+  const { recordAnswer } = useQuizStats()
+
   // Start timer when questions load (only if timed mode is enabled)
   useEffect(() => {
     if (questions && questions.length > 0 && timedMode) {
@@ -61,6 +65,9 @@ function QuizPageContent() {
 
     setAnswers(prev => [...prev, answer])
     setShowFeedback(true)
+
+    // Update global stats
+    recordAnswer(isCorrect)
 
     // Auto advance after 2 seconds
     setTimeout(() => {
