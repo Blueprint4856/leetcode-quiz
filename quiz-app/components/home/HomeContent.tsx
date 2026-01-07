@@ -8,7 +8,7 @@ export function HomeContent() {
   const { stats, recordAnswer, resetStats } = useQuizStats()
 
   return (
-    <div className="max-w-7xl mx-auto px-3 md:px-4 py-3 md:py-4 space-y-3 md:space-y-4">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4 space-y-3 md:space-y-4">
       <StatsBar
         accuracy={stats.accuracy}
         streak={stats.currentStreak}

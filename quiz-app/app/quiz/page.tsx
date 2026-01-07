@@ -113,7 +113,7 @@ function QuizPageContent() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#e8f5f0] p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 flex items-center justify-center">
         <Card variant="elevated" className="text-center bg-white shadow-lg border border-gray-200 animate-bounce-in">
           <div className="text-6xl mb-4 animate-bounce">🎯</div>
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-emerald-200 border-t-emerald-600 mx-auto mb-6" />
@@ -128,7 +128,7 @@ function QuizPageContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#e8f5f0] p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 flex items-center justify-center">
         <Card variant="elevated" className="text-center bg-white shadow-lg border border-gray-200 animate-bounce-in">
           <div className="text-7xl mb-4 animate-bounce">😕</div>
           <p className="text-2xl font-bold text-red-600 mb-4">Oops! Something went wrong</p>
@@ -147,7 +147,7 @@ function QuizPageContent() {
 
   if (!questions || questions.length === 0) {
     return (
-      <div className="min-h-screen bg-[#e8f5f0] p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 flex items-center justify-center">
         <Card variant="elevated" className="text-center bg-white shadow-lg border border-gray-200 animate-bounce-in">
           <div className="text-7xl mb-4 animate-bounce">📭</div>
           <p className="text-2xl font-bold text-gray-900 mb-4">No questions available</p>
@@ -171,7 +171,7 @@ function QuizPageContent() {
     const isGood = percentage >= 70
 
     return (
-      <div className="min-h-screen bg-[#e8f5f0] p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 flex items-center justify-center">
         <div className="max-w-md w-full animate-bounce-in">
           <Card variant="elevated" className="text-center bg-white shadow-lg border border-gray-200">
             {/* Celebration Emoji */}
@@ -257,8 +257,8 @@ function QuizPageContent() {
   const currentQuestion = questions[currentIndex]
 
   return (
-    <div className="min-h-screen bg-[#e8f5f0] p-4 pb-8">
-      <div className="max-w-2xl mx-auto pt-4">
+    <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 pb-8">
+      <div className="max-w-2xl mx-auto pt-2">
         {/* Header with timer and progress */}
         <div className="mb-6 space-y-4 animate-slide-up">
           <div className="flex items-center justify-between">
@@ -330,7 +330,7 @@ function QuizPageContent() {
 export default function QuizPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#e8f5f0] p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[#e8f5f0] px-4 md:px-6 py-4 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4 animate-bounce">🎯</div>
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-emerald-200 border-t-emerald-600 mx-auto mb-6" />

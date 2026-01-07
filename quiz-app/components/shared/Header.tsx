@@ -10,7 +10,7 @@ export function Header() {
   return (
     <>
       <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-3 md:px-4 py-2 md:py-3 flex items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-2 md:py-3 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 md:gap-3 min-w-0 flex-1">
             <div className="w-7 h-7 md:w-8 md:h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
               <svg
