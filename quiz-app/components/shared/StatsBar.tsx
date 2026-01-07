@@ -1,6 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { Target, Flame, Trophy, ChevronDown } from 'lucide-react'
+import { StatsDetails } from './StatsDetails'
+import { QuizStats } from '@/hooks/ui/useQuizStats'
+import { cn } from '@/lib/utils/cn'
 
 interface StatsBarProps {
   accuracy: number
@@ -8,9 +12,12 @@ interface StatsBarProps {
   best: number
   correct: number
   total: number
+  fullStats?: QuizStats
 }
 
-export function StatsBar({ accuracy, streak, best, correct, total }: StatsBarProps) {
+export function StatsBar({ accuracy, streak, best, correct, total, fullStats }: StatsBarProps) {
+  const [showDetails, setShowDetails] = useState(false)
+
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 px-5 md:px-8 py-4 md:py-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -36,7 +43,10 @@ export function StatsBar({ accuracy, streak, best, correct, total }: StatsBarPro
             </span>
           </div>
         </div>
-        <button className="hidden sm:flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0">
+        <button
+          onClick={() => setShowDetails(!showDetails)}
+          className="hidden sm:flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -52,9 +62,15 @@ export function StatsBar({ accuracy, streak, best, correct, total }: StatsBarPro
             <path d="M8 17v-3" />
           </svg>
           <span className="text-sm font-medium">Details</span>
-          <ChevronDown className="w-4 h-4" />
+          <ChevronDown className={cn(
+            "w-4 h-4 transition-transform",
+            showDetails && "rotate-180"
+          )} />
         </button>
       </div>
+
+      {/* Expanded Details */}
+      {showDetails && fullStats && <StatsDetails stats={fullStats} />}
     </div>
   )
 }

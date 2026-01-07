@@ -36,7 +36,7 @@ function QuizPageContent() {
   const { seconds, start, pause, reset } = useTimer(false)
 
   // Stats tracking
-  const { recordAnswer } = useQuizStats()
+  const { recordAnswer, recordSession } = useQuizStats()
 
   // Start timer when questions load (only if timed mode is enabled)
   useEffect(() => {
@@ -66,8 +66,9 @@ function QuizPageContent() {
     setAnswers(prev => [...prev, answer])
     setShowFeedback(true)
 
-    // Update global stats
-    recordAnswer(isCorrect)
+    // Update global stats with difficulty tracking
+    const questionDifficulty = currentQuestion.difficulty as Difficulty
+    recordAnswer(isCorrect, questionDifficulty)
 
     // Auto advance after 2 seconds
     setTimeout(() => {
@@ -87,6 +88,10 @@ function QuizPageContent() {
       // Quiz completed
       pause()
       setQuizCompleted(true)
+
+      // Record the completed session
+      const finalScore = answers.filter(a => a.isCorrect).length + (selectedPattern === questions[currentIndex]?.correctPattern ? 1 : 0)
+      recordSession(finalScore, questions.length, difficulty)
     }
   }
 

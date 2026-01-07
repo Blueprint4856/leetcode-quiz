@@ -15,6 +15,7 @@ export function HomeContent() {
         best={stats.bestStreak}
         correct={stats.totalCorrect}
         total={stats.totalAnswered}
+        fullStats={stats}
       />
       <QuizInterface />
     </div>
