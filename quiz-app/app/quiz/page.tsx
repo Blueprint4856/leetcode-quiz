@@ -6,6 +6,7 @@ import { useQuestions } from '@/hooks/queries/useQuestions'
 import { useTimer } from '@/hooks/ui/useTimer'
 import { useLocalStorage } from '@/hooks/ui/useLocalStorage'
 import { useQuizStats } from '@/hooks/ui/useQuizStats'
+import { useSettings } from '@/hooks/ui/useSettings'
 import { QuestionCard } from '@/components/quiz/QuestionCard'
 import { PatternSelector } from '@/components/quiz/PatternSelector'
 import { Timer } from '@/components/quiz/Timer'
@@ -21,9 +22,14 @@ function QuizPageContent() {
   const searchParams = useSearchParams()
   const difficulty = (searchParams.get('difficulty') as Difficulty) || 'all'
   const timedMode = searchParams.get('timed') === 'true'
+  const { settings } = useSettings()
 
-  // Fetch questions
-  const { data: questions, isLoading, error } = useQuestions({ difficulty, limit: 10 })
+  // Fetch questions with pattern filtering
+  const { data: questions, isLoading, error } = useQuestions({
+    difficulty,
+    patterns: settings.selectedPatterns,
+    limit: 10
+  })
 
   // Quiz state
   const [currentIndex, setCurrentIndex] = useState(0)

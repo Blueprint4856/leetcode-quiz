@@ -1,19 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import { getQuestions } from '@/lib/api/questions'
-import { Difficulty } from '@/lib/types/quiz'
+import { Difficulty, Pattern } from '@/lib/types/quiz'
 
 interface UseQuestionsOptions {
   difficulty?: Difficulty
+  patterns?: Pattern[]
   limit?: number
   enabled?: boolean
 }
 
 export function useQuestions(options: UseQuestionsOptions = {}) {
-  const { difficulty = 'all', limit = 10, enabled = true } = options
+  const { difficulty = 'all', patterns, limit = 10, enabled = true } = options
 
   return useQuery({
-    queryKey: ['questions', { difficulty, limit }],
-    queryFn: () => getQuestions({ difficulty, limit }),
+    queryKey: ['questions', { difficulty, patterns, limit }],
+    queryFn: () => getQuestions({ difficulty, patterns, limit }),
     // Stale time: 5 minutes (questions don't change often)
     staleTime: 5 * 60 * 1000,
     // Cache time: 10 minutes

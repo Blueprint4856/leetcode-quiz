@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Clock, Shuffle, RotateCcw } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { QUESTIONS } from '@/lib/data/questions'
@@ -8,20 +8,32 @@ import { PATTERNS } from '@/lib/data/questions'
 import { Difficulty } from '@/lib/types/quiz'
 import { cn } from '@/lib/utils/cn'
 import { QuestionCard } from '@/components/quiz/QuestionCard'
+import { useSettings } from '@/hooks/ui/useSettings'
 
 export function QuizInterface() {
   const router = useRouter()
+  const { settings } = useSettings()
   const [timedMode, setTimedMode] = useState(false)
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all'>('all')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
 
-  // Get filtered questions based on difficulty
-  const getFilteredQuestions = () => {
-    if (selectedDifficulty === 'all') return QUESTIONS
-    return QUESTIONS.filter((q) => q.difficulty === selectedDifficulty)
-  }
+  // Get filtered questions based on difficulty and selected patterns
+  const filteredQuestions = useMemo(() => {
+    let filtered = QUESTIONS
 
-  const filteredQuestions = getFilteredQuestions()
+    // Filter by difficulty
+    if (selectedDifficulty !== 'all') {
+      filtered = filtered.filter((q) => q.difficulty === selectedDifficulty)
+    }
+
+    // Filter by selected patterns
+    if (settings.selectedPatterns.length > 0) {
+      filtered = filtered.filter((q) => settings.selectedPatterns.includes(q.correctPattern))
+    }
+
+    return filtered
+  }, [selectedDifficulty, settings.selectedPatterns])
+
   const currentQuestion = filteredQuestions[currentQuestionIndex]
 
   const handleShuffle = () => {
@@ -34,6 +46,13 @@ export function QuizInterface() {
     setSelectedDifficulty('all')
     setTimedMode(false)
   }
+
+  // Reset index when filtered questions change
+  useEffect(() => {
+    if (currentQuestionIndex >= filteredQuestions.length && filteredQuestions.length > 0) {
+      setCurrentQuestionIndex(0)
+    }
+  }, [filteredQuestions.length, currentQuestionIndex])
 
   const handlePatternSelect = (patternId: string) => {
     // Navigate to results page or show feedback
