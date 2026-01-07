@@ -10,12 +10,20 @@ import { cn } from '@/lib/utils/cn'
 import { QuestionCard } from '@/components/quiz/QuestionCard'
 import { Feedback } from '@/components/quiz/Feedback'
 import { useSettings } from '@/hooks/ui/useSettings'
-import { useQuizStats } from '@/hooks/ui/useQuizStats'
 
-export function QuizInterface() {
+interface QuizInterfaceProps {
+  recordAnswer: (
+    isCorrect: boolean,
+    difficulty?: Difficulty,
+    correctPattern?: Pattern,
+    selectedPattern?: Pattern,
+    questionTitle?: string
+  ) => void
+}
+
+export function QuizInterface({ recordAnswer }: QuizInterfaceProps) {
   const router = useRouter()
   const { settings } = useSettings()
-  const { recordAnswer } = useQuizStats()
   const [timedMode, setTimedMode] = useState(false)
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all'>('all')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
