@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
-2:I[76724,["/leetcode-quiz/_next/static/chunks/3d25a2bdd53fccf0.js","/leetcode-quiz/_next/static/chunks/94674c3b2403a713.js","/leetcode-quiz/_next/static/chunks/50728a99ea8d4ac6.js"],"Header"]
-3:I[21866,["/leetcode-quiz/_next/static/chunks/3d25a2bdd53fccf0.js","/leetcode-quiz/_next/static/chunks/94674c3b2403a713.js","/leetcode-quiz/_next/static/chunks/50728a99ea8d4ac6.js"],"HomeContent"]
+2:I[76724,["/leetcode-quiz/_next/static/chunks/3d25a2bdd53fccf0.js","/leetcode-quiz/_next/static/chunks/91ec5b0552a0da56.js","/leetcode-quiz/_next/static/chunks/96fe65a4b69a55bb.js"],"Header"]
+3:I[21866,["/leetcode-quiz/_next/static/chunks/3d25a2bdd53fccf0.js","/leetcode-quiz/_next/static/chunks/91ec5b0552a0da56.js","/leetcode-quiz/_next/static/chunks/96fe65a4b69a55bb.js"],"HomeContent"]
 4:I[97367,["/leetcode-quiz/_next/static/chunks/4fd93823156e59e8.js"],"OutletBoundary"]
 5:"$Sreact.suspense"
-0:{"buildId":"b1CLtP2985nrNBSx4yjW6","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen","children":[["$","$L2",null,{}],["$","$L3",null,{}]]}],[["$","script","script-0",{"src":"/leetcode-quiz/_next/static/chunks/94674c3b2403a713.js","async":true}],["$","script","script-1",{"src":"/leetcode-quiz/_next/static/chunks/50728a99ea8d4ac6.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"ubgmMnt1ER8D490S72YKJ","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen","children":[["$","$L2",null,{}],["$","$L3",null,{}]]}],[["$","script","script-0",{"src":"/leetcode-quiz/_next/static/chunks/91ec5b0552a0da56.js","async":true}],["$","script","script-1",{"src":"/leetcode-quiz/_next/static/chunks/96fe65a4b69a55bb.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
 6:null
