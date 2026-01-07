@@ -1,2 +1,2 @@
-:HL["/leetcode-quiz/_next/static/chunks/54b951c8dc118a6f.css","style"]
-0:{"buildId":"VJmWig8h-7fRjg4ZuU_Ot","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"quiz","paramType":null,"paramKey":"quiz","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/leetcode-quiz/_next/static/chunks/f5238609222ef091.css","style"]
+0:{"buildId":"WdKp5_CYFMO59ZOLtb720","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"quiz","paramType":null,"paramKey":"quiz","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
