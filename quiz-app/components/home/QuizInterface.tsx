@@ -5,17 +5,22 @@ import { Clock, Shuffle, RotateCcw } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { QUESTIONS } from '@/lib/data/questions'
 import { PATTERNS } from '@/lib/data/questions'
-import { Difficulty } from '@/lib/types/quiz'
+import { Difficulty, Pattern } from '@/lib/types/quiz'
 import { cn } from '@/lib/utils/cn'
 import { QuestionCard } from '@/components/quiz/QuestionCard'
+import { Feedback } from '@/components/quiz/Feedback'
 import { useSettings } from '@/hooks/ui/useSettings'
+import { useQuizStats } from '@/hooks/ui/useQuizStats'
 
 export function QuizInterface() {
   const router = useRouter()
   const { settings } = useSettings()
+  const { recordAnswer } = useQuizStats()
   const [timedMode, setTimedMode] = useState(false)
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all'>('all')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [selectedPattern, setSelectedPattern] = useState<Pattern | undefined>()
+  const [showFeedback, setShowFeedback] = useState(false)
 
   // Get filtered questions based on difficulty and selected patterns
   const filteredQuestions = useMemo(() => {
@@ -45,6 +50,8 @@ export function QuizInterface() {
     setCurrentQuestionIndex(0)
     setSelectedDifficulty('all')
     setTimedMode(false)
+    setSelectedPattern(undefined)
+    setShowFeedback(false)
   }
 
   // Reset index when filtered questions change
@@ -55,8 +62,34 @@ export function QuizInterface() {
   }, [filteredQuestions.length, currentQuestionIndex])
 
   const handlePatternSelect = (patternId: string) => {
-    // Navigate to results page or show feedback
-    console.log('Selected pattern:', patternId)
+    if (showFeedback || !currentQuestion) return // Prevent multiple selections
+
+    const pattern = patternId as Pattern
+    setSelectedPattern(pattern)
+
+    const isCorrect = pattern === currentQuestion.correctPattern
+
+    // Update global stats
+    const questionDifficulty = currentQuestion.difficulty as Difficulty
+    recordAnswer(isCorrect, questionDifficulty)
+
+    // Show feedback
+    setShowFeedback(true)
+
+    // Auto advance to next question after 2 seconds
+    setTimeout(() => {
+      handleNextQuestion()
+    }, 2000)
+  }
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex + 1 < filteredQuestions.length) {
+      setCurrentQuestionIndex(prev => prev + 1)
+    } else {
+      setCurrentQuestionIndex(0) // Loop back to start
+    }
+    setSelectedPattern(undefined)
+    setShowFeedback(false)
   }
 
   const difficulties: { value: Difficulty | 'all'; label: string }[] = [
@@ -65,6 +98,27 @@ export function QuizInterface() {
     { value: 'medium', label: 'Medium' },
     { value: 'hard', label: 'Hard' },
   ]
+
+  // If no questions available after filtering
+  if (!currentQuestion || filteredQuestions.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center">
+          <div className="text-6xl mb-4">🔍</div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">No Questions Found</h3>
+          <p className="text-gray-600 mb-6">
+            No questions match your current filters. Try selecting different patterns in Settings or change the difficulty level.
+          </p>
+          <button
+            onClick={handleReset}
+            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-colors"
+          >
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -141,21 +195,54 @@ export function QuizInterface() {
       </div>
 
       {/* Pattern Selection Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-        {PATTERNS.map((pattern) => (
-          <button
-            key={pattern.id}
-            onClick={() => handlePatternSelect(pattern.id)}
-            className="bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 hover:border-emerald-300 rounded-xl p-4 md:p-5 text-left transition-all group min-h-[68px] flex items-center"
-          >
-            <div className="flex items-center gap-2.5 w-full">
-              <span className="text-base md:text-lg flex-shrink-0">{pattern.emoji}</span>
-              <span className="text-xs md:text-sm font-medium text-gray-900 group-hover:text-emerald-700 leading-tight">
-                {pattern.label}
-              </span>
-            </div>
-          </button>
-        ))}
+      <div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          {PATTERNS.map((pattern) => {
+            const isSelected = selectedPattern === pattern.id
+            const isCorrect = currentQuestion && pattern.id === currentQuestion.correctPattern
+            const showAsCorrect = showFeedback && isCorrect
+            const showAsIncorrect = showFeedback && isSelected && !isCorrect
+
+            return (
+              <button
+                key={pattern.id}
+                onClick={() => handlePatternSelect(pattern.id)}
+                disabled={showFeedback}
+                className={cn(
+                  'border-2 rounded-xl p-4 md:p-5 text-left transition-all group min-h-[68px] flex items-center',
+                  showFeedback && 'cursor-not-allowed',
+                  !showFeedback && 'hover:bg-emerald-100 hover:border-emerald-300',
+                  showAsCorrect && 'bg-green-100 border-green-500',
+                  showAsIncorrect && 'bg-red-100 border-red-500',
+                  !showAsCorrect && !showAsIncorrect && 'bg-emerald-50 border-emerald-200'
+                )}
+              >
+                <div className="flex items-center gap-2.5 w-full">
+                  <span className="text-base md:text-lg flex-shrink-0">{pattern.emoji}</span>
+                  <span className={cn(
+                    'text-xs md:text-sm font-medium leading-tight',
+                    showAsCorrect && 'text-green-900',
+                    showAsIncorrect && 'text-red-900',
+                    !showAsCorrect && !showAsIncorrect && 'text-gray-900 group-hover:text-emerald-700'
+                  )}>
+                    {pattern.label}
+                  </span>
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Feedback */}
+        {showFeedback && selectedPattern && currentQuestion && (
+          <div className="mt-6">
+            <Feedback
+              isCorrect={selectedPattern === currentQuestion.correctPattern}
+              correctPattern={currentQuestion.correctPattern}
+              selectedPattern={selectedPattern}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
