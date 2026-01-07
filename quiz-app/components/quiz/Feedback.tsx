@@ -28,27 +28,27 @@ export function Feedback({
   return (
     <div
       className={cn(
-        'rounded-2xl p-6 text-center font-semibold shadow-2xl border-4',
-        'animate-bounce-in backdrop-blur-sm',
+        'rounded-xl p-6 text-center font-semibold shadow-lg border-2',
+        'animate-bounce-in',
         isCorrect
-          ? 'bg-gradient-to-br from-green-400 to-emerald-500 text-white border-green-300'
-          : 'bg-gradient-to-br from-red-400 to-pink-500 text-white border-red-300'
+          ? 'bg-green-50 text-green-900 border-green-300'
+          : 'bg-red-50 text-red-900 border-red-300'
       )}
     >
       <div className="text-6xl mb-4 animate-bounce">{isCorrect ? '🎉' : '💭'}</div>
       <div className="text-2xl font-extrabold mb-2">
         {isCorrect ? 'Perfect!' : 'Keep Learning!'}
       </div>
-      <div className="text-base opacity-90 mb-4">
+      <div className="text-base mb-4">
         {isCorrect ? 'You got it right!' : 'Not quite, but that\'s okay!'}
       </div>
       {!isCorrect && (
-        <div className="mt-4 space-y-3 bg-white/20 rounded-xl p-4 backdrop-blur-sm border border-white/30">
+        <div className="mt-4 space-y-3 bg-white rounded-xl p-4 border border-gray-200">
           <div className="flex items-center justify-center gap-2 text-base">
             <span className="text-2xl">{selectedPatternEmoji}</span>
             <span>You chose: <span className="font-extrabold">{selectedPatternLabel}</span></span>
           </div>
-          <div className="h-px bg-white/30" />
+          <div className="h-px bg-gray-200" />
           <div className="flex items-center justify-center gap-2 text-base">
             <span className="text-2xl">{correctPatternEmoji}</span>
             <span>Answer: <span className="font-extrabold">{correctPatternLabel}</span></span>
@@ -56,7 +56,7 @@ export function Feedback({
         </div>
       )}
       {isCorrect && (
-        <div className="mt-3 text-sm opacity-90">
+        <div className="mt-3 text-sm">
           Next question coming up! 🚀
         </div>
       )}

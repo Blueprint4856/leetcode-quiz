@@ -8,7 +8,7 @@ interface TimerProps {
 
 export function Timer({ seconds }: TimerProps) {
   return (
-    <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 text-white px-6 py-3 rounded-2xl font-bold shadow-xl border-2 border-white/20 backdrop-blur-sm flex items-center gap-2 animate-pulse-glow">
+    <div className="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold shadow-sm border-2 border-gray-200 flex items-center gap-2">
       <span className="text-xl">⏱️</span>
       <span className="text-lg tracking-wide">{formatTime(seconds)}</span>
     </div>

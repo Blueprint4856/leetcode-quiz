@@ -9,21 +9,18 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-3">
-        <span className="text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-1 rounded-full shadow-md">
+        <span className="text-sm font-bold text-gray-900 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-200">
           Question {current} of {total}
         </span>
-        <span className="text-base font-extrabold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <span className="text-base font-extrabold text-emerald-600">
           {Math.round(percentage)}%
         </span>
       </div>
-      <div className="w-full h-3 bg-white/40 rounded-full overflow-hidden shadow-inner backdrop-blur-sm border border-white/30">
+      <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 transition-all duration-500 ease-out shadow-lg relative overflow-hidden"
+          className="h-full bg-emerald-500 transition-all duration-500 ease-out"
           style={{ width: `${percentage}%` }}
-        >
-          {/* Animated shimmer effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-        </div>
+        />
       </div>
     </div>
   )

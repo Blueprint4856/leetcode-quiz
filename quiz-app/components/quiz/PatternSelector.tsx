@@ -28,24 +28,22 @@ export function PatternSelector({
             style={{ animationDelay: `${index * 50}ms` }}
             className={cn(
               // Base styles - mobile-first with touch-friendly sizing
-              'relative min-h-[72px] p-4 rounded-2xl font-semibold transition-all duration-200',
-              'focus:outline-none focus:ring-4 focus:ring-offset-2',
+              'relative min-h-[72px] p-4 rounded-xl font-semibold transition-all duration-200',
+              'focus:outline-none focus:ring-2 focus:ring-offset-2',
               'disabled:opacity-50 disabled:cursor-not-allowed',
               'transform hover:scale-105 active:scale-95',
-              'shadow-md hover:shadow-xl',
               'animate-slide-up',
-              // Default state with gradient border effect
+              // Default state
               !isSelected && [
-                'bg-white border-2 border-gray-200 text-gray-800',
-                'hover:border-purple-300 hover:bg-gradient-to-br hover:from-white hover:to-purple-50',
-                'focus:ring-purple-300'
+                'bg-emerald-50 border-2 border-emerald-200 text-gray-800',
+                'hover:border-emerald-300 hover:bg-emerald-100',
+                'focus:ring-emerald-300'
               ],
-              // Selected state with vibrant gradient
+              // Selected state
               isSelected && [
-                'bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600',
-                'border-2 border-purple-400 text-white shadow-2xl',
-                'hover:from-purple-600 hover:via-pink-600 hover:to-purple-700',
-                'focus:ring-purple-500'
+                'bg-emerald-500 border-2 border-emerald-600 text-white shadow-lg',
+                'hover:bg-emerald-600',
+                'focus:ring-emerald-500'
               ]
             )}
           >

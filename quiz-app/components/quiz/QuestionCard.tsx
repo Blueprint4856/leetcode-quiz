@@ -39,16 +39,17 @@ export function QuestionCard({ question }: QuestionCardProps) {
   const config = difficultyConfig[question.difficulty]
 
   return (
-    <Card variant="elevated" className="w-full backdrop-blur-sm bg-white/95 shadow-2xl border border-white/20 animate-slide-up">
+    <Card variant="elevated" className="w-full bg-white shadow-lg border border-gray-200 animate-slide-up">
       <div className="space-y-5">
-        {/* Difficulty Badge with Gradient */}
+        {/* Difficulty Badge */}
         <div className="flex items-center justify-between">
           <span
             className={cn(
-              'px-4 py-2 rounded-full text-sm font-bold capitalize shadow-lg',
-              'bg-gradient-to-r',
-              config.gradient,
-              'text-white flex items-center gap-2'
+              'px-4 py-2 rounded-full text-sm font-bold capitalize',
+              question.difficulty === 'easy' && 'bg-emerald-100 text-emerald-700',
+              question.difficulty === 'medium' && 'bg-yellow-100 text-yellow-700',
+              question.difficulty === 'hard' && 'bg-red-100 text-red-700',
+              'flex items-center gap-2'
             )}
           >
             <span className="text-base">{config.emoji}</span>
@@ -56,26 +57,22 @@ export function QuestionCard({ question }: QuestionCardProps) {
           </span>
         </div>
 
-        {/* Question Title with better styling */}
-        <h2 className="text-3xl font-extrabold text-gray-900 leading-tight bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
+        {/* Question Title */}
+        <h2 className="text-3xl font-extrabold text-gray-900 leading-tight">
           {question.title}
         </h2>
 
-        {/* Question Description with background */}
-        <div className={cn('p-4 rounded-xl', config.bg)}>
-          <p className="text-lg leading-relaxed text-gray-800 font-medium">
+        {/* Question Description */}
+        <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <p className="text-lg leading-relaxed text-gray-800">
             {question.description}
           </p>
         </div>
 
-        {/* Hints with improved styling */}
+        {/* Hints */}
         {question.hints && question.hints.length > 0 && (
           <details className="mt-4 group">
-            <summary className={cn(
-              'cursor-pointer text-base font-bold hover:text-primary-700',
-              'flex items-center gap-2 p-3 rounded-lg hover:bg-primary-50 transition-all',
-              config.text
-            )}>
+            <summary className="cursor-pointer text-base font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-2 p-3 rounded-lg hover:bg-emerald-50 transition-all">
               <span className="text-xl">💡</span>
               Need a hint?
               <span className="ml-auto text-xs opacity-70 group-open:rotate-180 transition-transform">▼</span>
@@ -84,12 +81,7 @@ export function QuestionCard({ question }: QuestionCardProps) {
               {question.hints.map((hint, index) => (
                 <li
                   key={index}
-                  className={cn(
-                    'pl-4 py-2 rounded-lg text-sm text-gray-700',
-                    'border-l-4 bg-gradient-to-r',
-                    config.gradient.replace('to-', 'via-'),
-                    'border-l-transparent bg-clip-padding animate-slide-up'
-                  )}
+                  className="pl-4 py-3 rounded-lg text-sm text-gray-700 border-l-4 border-emerald-400 bg-emerald-50 animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <span className="font-medium">Hint {index + 1}:</span> {hint}
