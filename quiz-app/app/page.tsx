@@ -1,10 +1,20 @@
-import { DifficultySelector } from '@/components/home/DifficultySelector'
+import { Header } from '@/components/shared/Header'
+import { StatsBar } from '@/components/shared/StatsBar'
+import { QuizInterface } from '@/components/home/QuizInterface'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 p-4">
-      <div className="max-w-md mx-auto pt-20">
-        <DifficultySelector />
+    <div className="min-h-screen">
+      <Header />
+      <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+        <StatsBar
+          accuracy={0}
+          streak={0}
+          best={0}
+          correct={0}
+          total={0}
+        />
+        <QuizInterface />
       </div>
     </div>
   )
